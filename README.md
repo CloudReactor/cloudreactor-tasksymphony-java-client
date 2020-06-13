@@ -1,6 +1,6 @@
 # tasksymphony-wrapper-io
 
-![Tests](https://github.com/CloudReactor/tasksymphony-wrapper-io/workflows/Tests/badge.svg?branch=master)
+![Java CI](https://github.com/CloudReactor/cloudreactor-tasksymphony-wrapper-io-java/workflows/Java%20CI/badge.svg?branch=master)
 
 ## Overview
 
