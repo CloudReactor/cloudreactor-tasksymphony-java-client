@@ -1,0 +1,14 @@
+.DS_Store
+.idea/
+*.iml
+*.ipr
+*.iws
+
+.gradle/
+gradle.properties
+
+build/*
+
+# From ansible
+*.retry
+
