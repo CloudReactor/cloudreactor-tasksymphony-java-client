@@ -9,6 +9,4 @@ gradle.properties
 
 build/*
 
-# From ansible
-*.retry
-
+generated/
