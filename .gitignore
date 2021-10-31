@@ -7,6 +7,3 @@
 .gradle/
 gradle.properties
 
-build/*
-
-generated/

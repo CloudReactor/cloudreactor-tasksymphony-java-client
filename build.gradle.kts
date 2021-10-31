@@ -57,10 +57,11 @@ configure<JavaPluginExtension> {
 
 sourceSets {
     main {
-        java.srcDir("generated/src/main/java")
+        java.srcDir("build/generate-resources/main/src/main/java")
     }
-
-
+    test {
+        java.srcDir("build/generate-resources/main/src/test/java")
+    }
 }
 
 tasks.withType<Test> {
@@ -68,23 +69,10 @@ tasks.withType<Test> {
         this.showStandardStreams = true
     }
 }
-/*
-openApiGenerate {
-    generatorName = "kotlin"
-    inputSpec = "$rootDir/specs/petstore-v3.0.yaml".toString()
-    outputDir = "$buildDir/generated".toString()
-    apiPackage = "org.openapi.example.api"
-    invokerPackage = "org.openapi.example.invoker"
-    modelPackage = "org.openapi.example.model"
-    configOptions = [
-        dateLibrary: "java8"
-    ]
-} */
 
 tasks.named<GenerateTask>("openApiGenerate") {
     generatorName.set("java")
     inputSpec.set("$rootDir/cloudreactor-openapi3.yml")
-    outputDir.set("$rootDir/generated")
     apiPackage.set("$GROUP.api")
     invokerPackage.set("$GROUP.invoker")
     modelPackage.set("$GROUP.model")
