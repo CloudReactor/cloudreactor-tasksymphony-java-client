@@ -35,9 +35,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * A ModelSerializer that takes additional arguments for \&quot;fields\&quot;, \&quot;omit\&quot; and \&quot;expand\&quot; in order to control which fields are displayed, and whether to replace simple values with complex, nested serializations
+ * AwsEcsExecutionMethods contain configuration for running Tasks in AWS ECS.
  */
-@ApiModel(description = "A ModelSerializer that takes additional arguments for \"fields\", \"omit\" and \"expand\" in order to control which fields are displayed, and whether to replace simple values with complex, nested serializations")
+@ApiModel(description = "AwsEcsExecutionMethods contain configuration for running Tasks in AWS ECS.")
 @JsonPropertyOrder({
   AwsEcsExecutionMethod.JSON_PROPERTY_TYPE,
   AwsEcsExecutionMethod.JSON_PROPERTY_TASK_DEFINITION_ARN,
@@ -61,7 +61,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   AwsEcsExecutionMethod.JSON_PROPERTY_PLATFORM_VERSION
 })
 @JsonTypeName("AwsEcsExecutionMethod")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-31T16:51:00.429-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AwsEcsExecutionMethod {
   public static final String JSON_PROPERTY_TYPE = "type";
   private String type;

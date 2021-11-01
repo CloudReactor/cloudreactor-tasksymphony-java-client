@@ -33,8 +33,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * WorkflowExecutionSummary
+ * A WorkflowExecution holds data on a specific execution (run) of a Workflow.
  */
+@ApiModel(description = "A WorkflowExecution holds data on a specific execution (run) of a Workflow.")
 @JsonPropertyOrder({
   WorkflowExecutionSummary.JSON_PROPERTY_URL,
   WorkflowExecutionSummary.JSON_PROPERTY_UUID,
@@ -55,7 +56,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   WorkflowExecutionSummary.JSON_PROPERTY_UPDATED_AT
 })
 @JsonTypeName("WorkflowExecutionSummary")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-31T16:51:00.429-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class WorkflowExecutionSummary {
   public static final String JSON_PROPERTY_URL = "url";
   private URI url;

@@ -2,6 +2,7 @@
 
 # WorkflowExecutionSummary
 
+A WorkflowExecution holds data on a specific execution (run) of a Workflow.
 
 ## Properties
 

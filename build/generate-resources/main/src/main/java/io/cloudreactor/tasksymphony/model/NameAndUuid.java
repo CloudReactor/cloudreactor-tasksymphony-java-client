@@ -27,15 +27,16 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * NameAndUuid
+ * Identifies an entity in three ways: 1) UUID 2) Name 3) URL
  */
+@ApiModel(description = "Identifies an entity in three ways: 1) UUID 2) Name 3) URL")
 @JsonPropertyOrder({
   NameAndUuid.JSON_PROPERTY_UUID,
   NameAndUuid.JSON_PROPERTY_URL,
   NameAndUuid.JSON_PROPERTY_NAME
 })
 @JsonTypeName("NameAndUuid")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-31T16:51:00.429-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class NameAndUuid {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private UUID uuid;

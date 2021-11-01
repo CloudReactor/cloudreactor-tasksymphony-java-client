@@ -27,8 +27,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * Link
+ * Links represent a URL and associated metadata.
  */
+@ApiModel(description = "Links represent a URL and associated metadata.")
 @JsonPropertyOrder({
   Link.JSON_PROPERTY_UUID,
   Link.JSON_PROPERTY_NAME,
@@ -39,7 +40,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   Link.JSON_PROPERTY_RANK
 })
 @JsonTypeName("Link")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-31T16:51:00.429-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Link {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private UUID uuid;

@@ -2,6 +2,7 @@
 
 # PatchedRunEnvironment
 
+RunEnvironments contain common settings for running a set of related Tasks. Usually RunEnvironments group Tasks in the same deployment environment (e.g. staging or production). Task and Workflows belong to a RunEnvironment but can override the RunEnvironment's settings.
 
 ## Properties
 

@@ -36,8 +36,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * PatchedPagerDutyProfile
+ * A PagerDutyProfile contains user-specific configuration on how to notify PagerDuty of events.
  */
+@ApiModel(description = "A PagerDutyProfile contains user-specific configuration on how to notify PagerDuty of events.")
 @JsonPropertyOrder({
   PatchedPagerDutyProfile.JSON_PROPERTY_URL,
   PatchedPagerDutyProfile.JSON_PROPERTY_UUID,
@@ -56,7 +57,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   PatchedPagerDutyProfile.JSON_PROPERTY_UPDATED_AT
 })
 @JsonTypeName("PatchedPagerDutyProfile")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-31T16:51:00.429-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PatchedPagerDutyProfile {
   public static final String JSON_PROPERTY_URL = "url";
   private URI url;

@@ -43,7 +43,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   PaginatedRunEnvironmentList.JSON_PROPERTY_RESULTS
 })
 @JsonTypeName("PaginatedRunEnvironmentList")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-31T16:51:00.429-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PaginatedRunEnvironmentList {
   public static final String JSON_PROPERTY_COUNT = "count";
   private Integer count;

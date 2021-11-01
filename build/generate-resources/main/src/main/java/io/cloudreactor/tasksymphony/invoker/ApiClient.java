@@ -76,7 +76,7 @@ import java.text.DateFormat;
 import io.cloudreactor.tasksymphony.invoker.auth.Authentication;
 import io.cloudreactor.tasksymphony.invoker.auth.ApiKeyAuth;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-31T16:51:00.429-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class ApiClient extends JavaTimeFormatter {
   private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
   private Map<String, String> defaultCookieMap = new HashMap<String, String>();

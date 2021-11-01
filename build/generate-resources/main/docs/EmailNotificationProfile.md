@@ -2,6 +2,7 @@
 
 # EmailNotificationProfile
 
+An EmailProfile contains settings for emailing notifications.
 
 ## Properties
 

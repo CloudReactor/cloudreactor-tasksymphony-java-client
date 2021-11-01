@@ -58,7 +58,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   AwsEcsRunEnvironmentExecutionMethodCapability.JSON_PROPERTY_DEFAULT_PLATFORM_VERSION
 })
 @JsonTypeName("AwsEcsRunEnvironmentExecutionMethodCapability")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-31T16:51:00.429-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AwsEcsRunEnvironmentExecutionMethodCapability {
   public static final String JSON_PROPERTY_TYPE = "type";
   private String type;

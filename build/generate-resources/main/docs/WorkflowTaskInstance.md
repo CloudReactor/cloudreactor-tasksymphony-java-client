@@ -2,6 +2,7 @@
 
 # WorkflowTaskInstance
 
+A WorkflowTaskInstance contains a Task that is configured to run in a Workflow.
 
 ## Properties
 

@@ -2,6 +2,7 @@
 
 # NameAndUuid
 
+Identifies an entity in three ways: 1) UUID 2) Name 3) URL
 
 ## Properties
 

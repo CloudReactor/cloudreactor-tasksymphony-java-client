@@ -38,8 +38,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * PatchedRunEnvironment
+ * RunEnvironments contain common settings for running a set of related Tasks. Usually RunEnvironments group Tasks in the same deployment environment (e.g. staging or production). Task and Workflows belong to a RunEnvironment but can override the RunEnvironment&#39;s settings.
  */
+@ApiModel(description = "RunEnvironments contain common settings for running a set of related Tasks. Usually RunEnvironments group Tasks in the same deployment environment (e.g. staging or production). Task and Workflows belong to a RunEnvironment but can override the RunEnvironment's settings.")
 @JsonPropertyOrder({
   PatchedRunEnvironment.JSON_PROPERTY_URL,
   PatchedRunEnvironment.JSON_PROPERTY_UUID,
@@ -61,7 +62,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   PatchedRunEnvironment.JSON_PROPERTY_EXECUTION_METHOD_CAPABILITIES
 })
 @JsonTypeName("PatchedRunEnvironment")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-31T16:51:00.429-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PatchedRunEnvironment {
   public static final String JSON_PROPERTY_URL = "url";
   private URI url;

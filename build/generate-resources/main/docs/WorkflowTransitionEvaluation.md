@@ -2,6 +2,7 @@
 
 # WorkflowTransitionEvaluation
 
+A WorkflowTransitionEvaluation is a saved evaluation of the conditions in a WorkflowTransition during a WorkflowExecution.
 
 ## Properties
 

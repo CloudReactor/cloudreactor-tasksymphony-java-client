@@ -26,15 +26,16 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * AwsEcsServiceLoadBalancerDetails
+ * Configuration for a service AWS ECS Task that is behind an application load balancer.
  */
+@ApiModel(description = "Configuration for a service AWS ECS Task that is behind an application load balancer.")
 @JsonPropertyOrder({
   AwsEcsServiceLoadBalancerDetails.JSON_PROPERTY_TARGET_GROUP_ARN,
   AwsEcsServiceLoadBalancerDetails.JSON_PROPERTY_CONTAINER_NAME,
   AwsEcsServiceLoadBalancerDetails.JSON_PROPERTY_CONTAINER_PORT
 })
 @JsonTypeName("AwsEcsServiceLoadBalancerDetails")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-31T16:51:00.429-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AwsEcsServiceLoadBalancerDetails {
   public static final String JSON_PROPERTY_TARGET_GROUP_ARN = "target_group_arn";
   private String targetGroupArn;

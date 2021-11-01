@@ -35,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   Group.JSON_PROPERTY_URL
 })
 @JsonTypeName("Group")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-31T16:51:00.429-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Group {
   public static final String JSON_PROPERTY_ID = "id";
   private Integer id;

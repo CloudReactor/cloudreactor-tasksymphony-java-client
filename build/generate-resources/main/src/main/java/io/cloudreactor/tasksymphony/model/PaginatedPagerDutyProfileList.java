@@ -43,7 +43,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   PaginatedPagerDutyProfileList.JSON_PROPERTY_RESULTS
 })
 @JsonTypeName("PaginatedPagerDutyProfileList")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-31T16:51:00.429-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PaginatedPagerDutyProfileList {
   public static final String JSON_PROPERTY_COUNT = "count";
   private Integer count;

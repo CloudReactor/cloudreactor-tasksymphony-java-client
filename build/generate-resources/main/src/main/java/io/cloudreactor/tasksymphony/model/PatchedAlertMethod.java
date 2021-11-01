@@ -41,8 +41,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * PatchedAlertMethod
+ * An AlertMethod specifies one or more configured methods of notifying users or external sources of events that trigger when one or more conditions are satisfied.
  */
+@ApiModel(description = "An AlertMethod specifies one or more configured methods of notifying users or external sources of events that trigger when one or more conditions are satisfied.")
 @JsonPropertyOrder({
   PatchedAlertMethod.JSON_PROPERTY_URL,
   PatchedAlertMethod.JSON_PROPERTY_UUID,
@@ -64,7 +65,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   PatchedAlertMethod.JSON_PROPERTY_UPDATED_AT
 })
 @JsonTypeName("PatchedAlertMethod")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-31T16:51:00.429-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PatchedAlertMethod {
   public static final String JSON_PROPERTY_URL = "url";
   private URI url;

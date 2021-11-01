@@ -2,7 +2,7 @@
 
 # PatchedWorkflow
 
-A ModelSerializer that takes additional arguments for \"fields\", \"omit\" and \"expand\" in order to control which fields are displayed, and whether to replace simple values with complex, nested serializations
+Workflows are Tasks arranged in a directed graph. Configured Tasks are held by WorkflowTaskInstances, and WorkflowTransitions connect WorkflowTaskInstances together.
 
 ## Properties
 

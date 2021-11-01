@@ -2,6 +2,7 @@
 
 # WorkflowTransition
 
+A WorkflowTransition is a directed edge in a Worfklow, which is a directed graph. It contains a source WorkflowTaskInstance, a destination WorkflowTaskInstance, as well as conditions for triggering the destination to execution.
 
 ## Properties
 

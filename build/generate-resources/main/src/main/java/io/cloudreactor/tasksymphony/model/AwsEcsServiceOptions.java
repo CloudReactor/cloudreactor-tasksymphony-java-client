@@ -36,8 +36,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * AwsEcsServiceOptions
+ * Options for running a Task as a service in AWS ECS.
  */
+@ApiModel(description = "Options for running a Task as a service in AWS ECS.")
 @JsonPropertyOrder({
   AwsEcsServiceOptions.JSON_PROPERTY_LOAD_BALANCERS,
   AwsEcsServiceOptions.JSON_PROPERTY_HEALTH_CHECK_GRACE_PERIOD_SECONDS,
@@ -51,7 +52,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   AwsEcsServiceOptions.JSON_PROPERTY_TAGS
 })
 @JsonTypeName("AwsEcsServiceOptions")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-31T16:51:00.429-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AwsEcsServiceOptions {
   public static final String JSON_PROPERTY_LOAD_BALANCERS = "load_balancers";
   private List<AwsEcsServiceLoadBalancerDetails> loadBalancers = new ArrayList<>();

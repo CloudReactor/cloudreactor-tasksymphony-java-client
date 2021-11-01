@@ -37,8 +37,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * EmailNotificationProfile
+ * An EmailProfile contains settings for emailing notifications.
  */
+@ApiModel(description = "An EmailProfile contains settings for emailing notifications.")
 @JsonPropertyOrder({
   EmailNotificationProfile.JSON_PROPERTY_URL,
   EmailNotificationProfile.JSON_PROPERTY_UUID,
@@ -57,7 +58,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   EmailNotificationProfile.JSON_PROPERTY_BODY_TEMPLATE
 })
 @JsonTypeName("EmailNotificationProfile")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-31T16:51:00.429-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class EmailNotificationProfile {
   public static final String JSON_PROPERTY_URL = "url";
   private URI url;

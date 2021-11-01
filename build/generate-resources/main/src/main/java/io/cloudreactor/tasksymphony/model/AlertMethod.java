@@ -41,8 +41,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * AlertMethod
+ * An AlertMethod specifies one or more configured methods of notifying users or external sources of events that trigger when one or more conditions are satisfied.
  */
+@ApiModel(description = "An AlertMethod specifies one or more configured methods of notifying users or external sources of events that trigger when one or more conditions are satisfied.")
 @JsonPropertyOrder({
   AlertMethod.JSON_PROPERTY_URL,
   AlertMethod.JSON_PROPERTY_UUID,
@@ -64,7 +65,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   AlertMethod.JSON_PROPERTY_UPDATED_AT
 })
 @JsonTypeName("AlertMethod")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-31T16:51:00.429-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AlertMethod {
   public static final String JSON_PROPERTY_URL = "url";
   private URI url;

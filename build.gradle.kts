@@ -76,7 +76,9 @@ tasks.named<GenerateTask>("openApiGenerate") {
     invokerPackage.set("$GROUP.invoker")
     modelPackage.set("$GROUP.model")
     library.set("apache-httpclient")
-    configOptions.set(mapOf("dateLibrary" to "java8"))
+    configOptions.set(mapOf(
+        "dateLibrary" to "java8",
+        "hideGenerationTimestamp" to "true"))
 }
 
 tasks.compileJava {

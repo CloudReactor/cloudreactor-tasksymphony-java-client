@@ -2,6 +2,7 @@
 
 # WorkflowSummary
 
+Selected properties of Workflows.
 
 ## Properties
 

@@ -35,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   TokenObtainPair.JSON_PROPERTY_REFRESH
 })
 @JsonTypeName("TokenObtainPair")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-31T16:51:00.429-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TokenObtainPair {
   public static final String JSON_PROPERTY_USERNAME = "username";
   private String username;

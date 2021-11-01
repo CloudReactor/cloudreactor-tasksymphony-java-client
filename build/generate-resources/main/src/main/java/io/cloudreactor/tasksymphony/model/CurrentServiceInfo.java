@@ -36,7 +36,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   CurrentServiceInfo.JSON_PROPERTY_SERVICE_ARN_UPDATED_AT
 })
 @JsonTypeName("CurrentServiceInfo")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-31T16:51:00.429-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CurrentServiceInfo {
   public static final String JSON_PROPERTY_TYPE = "type";
   private String type;

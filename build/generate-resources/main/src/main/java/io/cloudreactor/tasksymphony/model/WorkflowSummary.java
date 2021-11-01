@@ -36,8 +36,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * WorkflowSummary
+ * Selected properties of Workflows.
  */
+@ApiModel(description = "Selected properties of Workflows.")
 @JsonPropertyOrder({
   WorkflowSummary.JSON_PROPERTY_URL,
   WorkflowSummary.JSON_PROPERTY_UUID,
@@ -57,7 +58,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   WorkflowSummary.JSON_PROPERTY_UPDATED_AT
 })
 @JsonTypeName("WorkflowSummary")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-31T16:51:00.429-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class WorkflowSummary {
   public static final String JSON_PROPERTY_URL = "url";
   private URI url;

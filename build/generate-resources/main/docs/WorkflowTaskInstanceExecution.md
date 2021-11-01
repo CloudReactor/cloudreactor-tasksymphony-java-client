@@ -2,7 +2,7 @@
 
 # WorkflowTaskInstanceExecution
 
-A ModelSerializer that takes additional arguments for \"fields\", \"omit\" and \"expand\" in order to control which fields are displayed, and whether to replace simple values with complex, nested serializations
+WorkflowTaskInstanceExecutions hold the execution information for a WorkflowTaskInstance (which holds a Task) for a specific WorkflowExection (run of a Workflow).
 
 ## Properties
 

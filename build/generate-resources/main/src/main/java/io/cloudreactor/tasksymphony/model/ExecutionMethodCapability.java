@@ -68,7 +68,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   ExecutionMethodCapability.JSON_PROPERTY_SERVICE_OPTIONS
 })
 @JsonTypeName("ExecutionMethodCapability")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-31T16:51:00.429-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "type", visible = true)
 @JsonSubTypes({
   @JsonSubTypes.Type(value = AwsEcsExecutionMethodCapability.class, name = "AWS ECS"),

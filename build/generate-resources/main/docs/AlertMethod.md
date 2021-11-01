@@ -2,6 +2,7 @@
 
 # AlertMethod
 
+An AlertMethod specifies one or more configured methods of notifying users or external sources of events that trigger when one or more conditions are satisfied.
 
 ## Properties
 

@@ -65,7 +65,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   AwsEcsExecutionMethodCapability.JSON_PROPERTY_SERVICE_OPTIONS
 })
 @JsonTypeName("AwsEcsExecutionMethodCapability")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-31T16:51:00.429-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class AwsEcsExecutionMethodCapability {
   public static final String JSON_PROPERTY_TASK_DEFINITION_ARN = "task_definition_arn";
   private String taskDefinitionArn;

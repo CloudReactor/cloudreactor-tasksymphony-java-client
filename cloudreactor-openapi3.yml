@@ -2084,6 +2084,10 @@ components:
   schemas:
     AlertMethod:
       type: object
+      description: |-
+        An AlertMethod specifies one or more configured methods of notifying
+        users or external sources of events that trigger when one or more
+        conditions are satisfied.
       properties:
         url:
           type: string
@@ -2154,10 +2158,8 @@ components:
     AwsEcsExecutionMethod:
       type: object
       description: |-
-        A ModelSerializer that takes additional arguments for
-        "fields", "omit" and "expand" in order to
-        control which fields are displayed, and whether to replace simple
-        values with complex, nested serializations
+        AwsEcsExecutionMethods contain configuration for running Tasks in
+        AWS ECS.
       properties:
         type:
           type: string
@@ -2437,6 +2439,9 @@ components:
         - type
     AwsEcsServiceLoadBalancerDetails:
       type: object
+      description: |-
+        Configuration for a service AWS ECS Task that is behind an application load
+        balancer.
       properties:
         target_group_arn:
           type: string
@@ -2453,6 +2458,7 @@ components:
         - target_group_arn
     AwsEcsServiceOptions:
       type: object
+      description: Options for running a Task as a service in AWS ECS.
       properties:
         load_balancers:
           type: array
@@ -2515,6 +2521,7 @@ components:
       type: string
     EmailNotificationProfile:
       type: object
+      description: An EmailProfile contains settings for emailing notifications.
       properties:
         url:
           type: string
@@ -2645,6 +2652,7 @@ components:
         - url
     Link:
       type: object
+      description: Links represent a URL and associated metadata.
       properties:
         uuid:
           type: string
@@ -2673,6 +2681,11 @@ components:
         - uuid
     NameAndUuid:
       type: object
+      description: |-
+        Identifies an entity in three ways:
+        1) UUID
+        2) Name
+        3) URL
       properties:
         uuid:
           type: string
@@ -2689,6 +2702,9 @@ components:
         - uuid
     PagerDutyProfile:
       type: object
+      description: |-
+        A PagerDutyProfile contains user-specific configuration on how to notify
+        PagerDuty of events.
       properties:
         url:
           type: string
@@ -2954,6 +2970,10 @@ components:
             $ref: '#/components/schemas/WorkflowTransition'
     PatchedAlertMethod:
       type: object
+      description: |-
+        An AlertMethod specifies one or more configured methods of notifying
+        users or external sources of events that trigger when one or more
+        conditions are satisfied.
       properties:
         url:
           type: string
@@ -3013,6 +3033,7 @@ components:
           readOnly: true
     PatchedEmailNotificationProfile:
       type: object
+      description: An EmailProfile contains settings for emailing notifications.
       properties:
         url:
           type: string
@@ -3081,6 +3102,9 @@ components:
           maxLength: 10000
     PatchedPagerDutyProfile:
       type: object
+      description: |-
+        A PagerDutyProfile contains user-specific configuration on how to notify
+        PagerDuty of events.
       properties:
         url:
           type: string
@@ -3136,6 +3160,12 @@ components:
           readOnly: true
     PatchedRunEnvironment:
       type: object
+      description: |-
+        RunEnvironments contain common settings for running a set of
+        related Tasks. Usually RunEnvironments group Tasks in the same
+        deployment environment (e.g. staging or production).
+        Task and Workflows belong to a RunEnvironment but can override
+        the RunEnvironment's settings.
       properties:
         url:
           type: string
@@ -3204,10 +3234,8 @@ components:
     PatchedTask:
       type: object
       description: |-
-        A ModelSerializer that takes additional arguments for
-        "fields", "omit" and "expand" in order to
-        control which fields are displayed, and whether to replace simple
-        values with complex, nested serializations
+        A Task is a specification for a runnable job, including details on how to
+        run the task and how often the task is supposed to run.
       properties:
         url:
           type: string
@@ -3355,11 +3383,7 @@ components:
           readOnly: true
     PatchedTaskExecution:
       type: object
-      description: |-
-        A ModelSerializer that takes additional arguments for
-        "fields", "omit" and "expand" in order to
-        control which fields are displayed, and whether to replace simple
-        values with complex, nested serializations
+      description: A Task Execution is an execution / run instance of a Task.
       properties:
         url:
           type: string
@@ -3685,10 +3709,9 @@ components:
     PatchedWorkflow:
       type: object
       description: |-
-        A ModelSerializer that takes additional arguments for
-        "fields", "omit" and "expand" in order to
-        control which fields are displayed, and whether to replace simple
-        values with complex, nested serializations
+        Workflows are Tasks arranged in a directed graph. Configured Tasks
+        are held by WorkflowTaskInstances, and WorkflowTransitions connect
+        WorkflowTaskInstances together.
       properties:
         url:
           type: string
@@ -3869,6 +3892,9 @@ components:
           readOnly: true
     PatchedWorkflowTaskInstance:
       type: object
+      description: |-
+        A WorkflowTaskInstance contains a Task that is configured to run in
+        a Workflow.
       properties:
         url:
           type: string
@@ -3971,6 +3997,11 @@ components:
           readOnly: true
     PatchedWorkflowTransition:
       type: object
+      description: |-
+        A WorkflowTransition is a directed edge in a Worfklow, which is a directed
+        graph. It contains a source WorkflowTaskInstance, a destination
+        WorkflowTaskInstance, as well as conditions for triggering the destination
+        to execution.
       properties:
         url:
           type: string
@@ -4045,6 +4076,12 @@ components:
       type: string
     RunEnvironment:
       type: object
+      description: |-
+        RunEnvironments contain common settings for running a set of
+        related Tasks. Usually RunEnvironments group Tasks in the same
+        deployment environment (e.g. staging or production).
+        Task and Workflows belong to a RunEnvironment but can override
+        the RunEnvironment's settings.
       properties:
         url:
           type: string
@@ -4135,10 +4172,8 @@ components:
     Task:
       type: object
       description: |-
-        A ModelSerializer that takes additional arguments for
-        "fields", "omit" and "expand" in order to
-        control which fields are displayed, and whether to replace simple
-        values with complex, nested serializations
+        A Task is a specification for a runnable job, including details on how to
+        run the task and how often the task is supposed to run.
       properties:
         url:
           type: string
@@ -4303,11 +4338,7 @@ components:
         - uuid
     TaskExecution:
       type: object
-      description: |-
-        A ModelSerializer that takes additional arguments for
-        "fields", "omit" and "expand" in order to
-        control which fields are displayed, and whether to replace simple
-        values with complex, nested serializations
+      description: A Task Execution is an execution / run instance of a Task.
       properties:
         url:
           type: string
@@ -4723,10 +4754,9 @@ components:
     Workflow:
       type: object
       description: |-
-        A ModelSerializer that takes additional arguments for
-        "fields", "omit" and "expand" in order to
-        control which fields are displayed, and whether to replace simple
-        values with complex, nested serializations
+        Workflows are Tasks arranged in a directed graph. Configured Tasks
+        are held by WorkflowTaskInstances, and WorkflowTransitions connect
+        WorkflowTaskInstances together.
       properties:
         url:
           type: string
@@ -4933,6 +4963,8 @@ components:
         - workflow_transition_evaluations
     WorkflowExecutionSummary:
       type: object
+      description: A WorkflowExecution holds data on a specific execution (run) of
+        a Workflow.
       properties:
         url:
           type: string
@@ -5011,6 +5043,7 @@ components:
         - uuid
     WorkflowSummary:
       type: object
+      description: Selected properties of Workflows.
       properties:
         url:
           type: string
@@ -5082,6 +5115,9 @@ components:
         - uuid
     WorkflowTaskInstance:
       type: object
+      description: |-
+        A WorkflowTaskInstance contains a Task that is configured to run in
+        a Workflow.
       properties:
         url:
           type: string
@@ -5193,10 +5229,9 @@ components:
     WorkflowTaskInstanceExecution:
       type: object
       description: |-
-        A ModelSerializer that takes additional arguments for
-        "fields", "omit" and "expand" in order to
-        control which fields are displayed, and whether to replace simple
-        values with complex, nested serializations
+        WorkflowTaskInstanceExecutions hold the execution information
+        for a WorkflowTaskInstance (which holds a Task) for a specific
+        WorkflowExection (run of a Workflow).
       properties:
         uuid:
           type: string
@@ -5226,6 +5261,11 @@ components:
         - workflow_task_instance
     WorkflowTransition:
       type: object
+      description: |-
+        A WorkflowTransition is a directed edge in a Worfklow, which is a directed
+        graph. It contains a source WorkflowTaskInstance, a destination
+        WorkflowTaskInstance, as well as conditions for triggering the destination
+        to execution.
       properties:
         url:
           type: string
@@ -5292,6 +5332,9 @@ components:
         - uuid
     WorkflowTransitionEvaluation:
       type: object
+      description: |-
+        A WorkflowTransitionEvaluation is a saved evaluation of the conditions
+        in a WorkflowTransition during a WorkflowExecution.
       properties:
         uuid:
           type: string

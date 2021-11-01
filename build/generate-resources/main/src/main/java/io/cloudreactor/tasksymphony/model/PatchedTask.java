@@ -43,9 +43,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * A ModelSerializer that takes additional arguments for \&quot;fields\&quot;, \&quot;omit\&quot; and \&quot;expand\&quot; in order to control which fields are displayed, and whether to replace simple values with complex, nested serializations
+ * A Task is a specification for a runnable job, including details on how to run the task and how often the task is supposed to run.
  */
-@ApiModel(description = "A ModelSerializer that takes additional arguments for \"fields\", \"omit\" and \"expand\" in order to control which fields are displayed, and whether to replace simple values with complex, nested serializations")
+@ApiModel(description = "A Task is a specification for a runnable job, including details on how to run the task and how often the task is supposed to run.")
 @JsonPropertyOrder({
   PatchedTask.JSON_PROPERTY_URL,
   PatchedTask.JSON_PROPERTY_UUID,
@@ -85,7 +85,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   PatchedTask.JSON_PROPERTY_UPDATED_AT
 })
 @JsonTypeName("PatchedTask")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-31T16:51:00.429-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class PatchedTask {
   public static final String JSON_PROPERTY_URL = "url";
   private URI url;

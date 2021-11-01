@@ -2,6 +2,7 @@
 
 # Link
 
+Links represent a URL and associated metadata.
 
 ## Properties
 

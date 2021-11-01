@@ -2,6 +2,7 @@
 
 # AwsEcsServiceOptions
 
+Options for running a Task as a service in AWS ECS.
 
 ## Properties
 

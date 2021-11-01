@@ -40,8 +40,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * WorkflowTaskInstance
+ * A WorkflowTaskInstance contains a Task that is configured to run in a Workflow.
  */
+@ApiModel(description = "A WorkflowTaskInstance contains a Task that is configured to run in a Workflow.")
 @JsonPropertyOrder({
   WorkflowTaskInstance.JSON_PROPERTY_URL,
   WorkflowTaskInstance.JSON_PROPERTY_UUID,
@@ -73,7 +74,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   WorkflowTaskInstance.JSON_PROPERTY_UPDATED_AT
 })
 @JsonTypeName("WorkflowTaskInstance")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-31T16:51:00.429-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class WorkflowTaskInstance {
   public static final String JSON_PROPERTY_URL = "url";
   private URI url;

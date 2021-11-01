@@ -2,6 +2,7 @@
 
 # PatchedPagerDutyProfile
 
+A PagerDutyProfile contains user-specific configuration on how to notify PagerDuty of events.
 
 ## Properties
 

@@ -29,8 +29,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * WorkflowTransitionEvaluation
+ * A WorkflowTransitionEvaluation is a saved evaluation of the conditions in a WorkflowTransition during a WorkflowExecution.
  */
+@ApiModel(description = "A WorkflowTransitionEvaluation is a saved evaluation of the conditions in a WorkflowTransition during a WorkflowExecution.")
 @JsonPropertyOrder({
   WorkflowTransitionEvaluation.JSON_PROPERTY_UUID,
   WorkflowTransitionEvaluation.JSON_PROPERTY_RESULT,
@@ -40,7 +41,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   WorkflowTransitionEvaluation.JSON_PROPERTY_EVALUATED_AT
 })
 @JsonTypeName("WorkflowTransitionEvaluation")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-31T16:51:00.429-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class WorkflowTransitionEvaluation {
   public static final String JSON_PROPERTY_UUID = "uuid";
   private UUID uuid;

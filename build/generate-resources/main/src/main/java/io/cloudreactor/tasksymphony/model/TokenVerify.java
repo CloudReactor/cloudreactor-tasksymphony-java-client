@@ -32,7 +32,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   TokenVerify.JSON_PROPERTY_TOKEN
 })
 @JsonTypeName("TokenVerify")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-31T16:51:00.429-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TokenVerify {
   public static final String JSON_PROPERTY_TOKEN = "token";
   private String token;

@@ -33,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   TokenRefresh.JSON_PROPERTY_REFRESH
 })
 @JsonTypeName("TokenRefresh")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-10-31T16:51:00.429-07:00[America/Los_Angeles]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class TokenRefresh {
   public static final String JSON_PROPERTY_ACCESS = "access";
   private String access;
