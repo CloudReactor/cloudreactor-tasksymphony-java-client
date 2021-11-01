@@ -21,7 +21,6 @@ object LibraryVersions {
     const val jackson_databind_nullable_version = "0.2.1"
     const val jakarta_annotation_version = "1.3.5"
     const val httpclient_version = "4.5.13"
-    const val jodatime_version = "2.9.9"
     const val junit_version = "4.13.1"
 }
 
