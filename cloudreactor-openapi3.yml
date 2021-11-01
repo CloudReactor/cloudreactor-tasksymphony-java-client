@@ -6,6 +6,7 @@ info:
   contact:
     name: Jeff Tsay
     email: jeff@cloudreactor.io
+    url: https://cloudreactor.io/
 paths:
   /api/v1/alert_methods/:
     get:
@@ -5327,6 +5328,9 @@ components:
       in: header
       name: Authorization
       description: Token-based authentication with required prefix "Token"
+servers:
+  - url: https://api.cloudreactor.io
+    description: CloudReactor API server
 externalDocs:
   url: https://docs.cloudreactor.io/
   description: CloudReactor Documentation Home
