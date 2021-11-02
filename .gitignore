@@ -6,9 +6,3 @@
 
 .gradle/
 gradle.properties
-
-build/*
-
-# From ansible
-*.retry
-
