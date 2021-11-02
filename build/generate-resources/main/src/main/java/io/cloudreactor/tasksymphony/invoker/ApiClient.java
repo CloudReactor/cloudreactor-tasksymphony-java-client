@@ -80,10 +80,10 @@ import io.cloudreactor.tasksymphony.invoker.auth.ApiKeyAuth;
 public class ApiClient extends JavaTimeFormatter {
   private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
   private Map<String, String> defaultCookieMap = new HashMap<String, String>();
-  private String basePath = "https://api.cloudreactor.io";
+  private String basePath = "https://api.cloudreactor.io/api/v1";
   protected List<ServerConfiguration> servers = new ArrayList<ServerConfiguration>(Arrays.asList(
     new ServerConfiguration(
-      "https://api.cloudreactor.io",
+      "https://api.cloudreactor.io/api/v1",
       "CloudReactor API server",
       new HashMap<String, ServerVariable>()
     )
