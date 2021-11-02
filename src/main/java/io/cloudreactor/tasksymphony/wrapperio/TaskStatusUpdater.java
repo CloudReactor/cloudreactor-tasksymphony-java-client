@@ -151,7 +151,6 @@ public class TaskStatusUpdater implements AutoCloseable {
    * values that cannot be serialized to JSON.
    * @throws MaxRetriesExceededException if the number of allowed retries was exceeded
    * @throws TimeoutException if the operation timed out
-   * @throws UnknownHostException if localhost can't be resolved
    * @throws InterruptedException if the current thread is interrupted while
    * waiting after an IOException occurred
    * @since 0.1.0
@@ -246,7 +245,6 @@ public class TaskStatusUpdater implements AutoCloseable {
    * values that cannot be serialized to JSON.
    * @throws MaxRetriesExceededException if the number of allowed retries was exceeded
    * @throws TimeoutException if the operation timed out
-   * @throws UnknownHostException if localhost can't be resolved
    * @throws InterruptedException if the current thread is interrupted while
    * waiting after an IOException occurred
    * @since 0.1.0
@@ -287,7 +285,6 @@ public class TaskStatusUpdater implements AutoCloseable {
   }
 
   /** Close the underlying socket if it exists.
-   * @throws SocketException if closing the socket causes an exception
    * @since 0.1.0
    */
   @Override
