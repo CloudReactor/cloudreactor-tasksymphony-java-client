@@ -1,8 +1,9 @@
 import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
 
 plugins {
-    java
+    `java-library`
     id("org.openapi.generator") version "5.3.0"
+    `maven-publish`
     idea
 }
 val GROUP = "io.cloudreactor.tasksymphony"
@@ -89,3 +90,38 @@ tasks.named<GenerateTask>("openApiGenerate") {
 tasks.compileJava {
     dependsOn(tasks.named("openApiGenerate"))
 }
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "io.cloudreactor"
+            artifactId = "tasksymphony"
+            version = "0.1.0"
+            from(components["java"])
+            pom {
+                name.set("CloudReactor Java API Client and Status Updater")
+                description.set("A concise description of my library")
+                url.set("https://github.com/CloudReactor/cloudreactor-tasksymphony-java-client")
+                licenses {
+                    license {
+                        name.set("BSD 2-clause license")
+                        url.set("https://opensource.org/licenses/BSD-2-Clause")
+                    }
+                }
+                developers {
+                    developer {
+                        id.set("jtsay")
+                        name.set("Jeff Tsay")
+                        email.set("jeff@cloudreactor.io")
+                    }
+                }
+                scm {
+                    connection.set("scm:git:git://example.com/my-library.git")
+                    developerConnection.set("scm:git:ssh://example.com/my-library.git")
+                    url.set("https://github.com/CloudReactor/cloudreactor-tasksymphony-java-client")
+                }
+            }
+        }
+    }
+}
+
