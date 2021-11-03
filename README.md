@@ -1,11 +1,25 @@
-# tasksymphony-wrapper-io
+# CloudReactor Java API Client and Status Updater
 
 ![Java CI](https://github.com/CloudReactor/cloudreactor-tasksymphony-wrapper-io-java/workflows/Java%20CI/badge.svg?branch=master)
 
 ## Overview
 
-This Java project allows JVM processes to communicate with the CloudReactor 
-wrapper script, so it can send updates about your process to the CloudReactor API
+This Java library consists of 2 parts:
+
+1) The CloudReactor API client allows JVM applications to programmatically 
+monitor and manage Tasks and Workflows. Most notably you can start and stop
+Tasks and Workflows by creating Task Executions and Workflow Executions. 
+
+2) The Wrapper I/O package allows a JVM process to communicate with the 
+[CloudReactor wrapper](https://github.com/CloudReactor/cloudreactor-procwrapper) 
+which is the parent process. 
+ 
+ 
+## Wrapper I/O
+
+`io.cloudreactor.tasksymphony.wrapperio`
+
+5) , so it can send updates about your process to the CloudReactor API
 server. Updates can include:
 
 * success count

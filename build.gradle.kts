@@ -63,6 +63,11 @@ sourceSets {
     }
 }
 
+tasks.withType<Javadoc> {
+    this.setDestinationDir(File("docs"))
+}
+
+
 tasks.withType<Test> {
     this.testLogging {
         this.showStandardStreams = true
