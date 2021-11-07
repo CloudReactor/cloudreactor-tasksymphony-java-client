@@ -132,7 +132,7 @@ public class PatchedTaskExecution {
   private JsonNullable<String> infrastructureWebsiteUrl = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_TASK = "task";
-  private JsonNullable<NameAndUuid> task = JsonNullable.<NameAndUuid>undefined();
+  private NameAndUuid task;
 
   public static final String JSON_PROPERTY_TASK_VERSION_NUMBER = "task_version_number";
   private JsonNullable<Long> taskVersionNumber = JsonNullable.<Long>undefined();
@@ -417,34 +417,31 @@ public class PatchedTaskExecution {
 
 
 
+  public PatchedTaskExecution task(NameAndUuid task) {
+    
+    this.task = task;
+    return this;
+  }
+
    /**
    * Get task
    * @return task
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonIgnore
-
-  public NameAndUuid getTask() {
-    
-    if (task == null) {
-      task = JsonNullable.<NameAndUuid>undefined();
-    }
-    return task.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_TASK)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<NameAndUuid> getTask_JsonNullable() {
+  public NameAndUuid getTask() {
     return task;
   }
-  
+
+
   @JsonProperty(JSON_PROPERTY_TASK)
-  private void setTask_JsonNullable(JsonNullable<NameAndUuid> task) {
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTask(NameAndUuid task) {
     this.task = task;
   }
-
 
 
   public PatchedTaskExecution taskVersionNumber(Long taskVersionNumber) {
@@ -2759,7 +2756,7 @@ public class PatchedTaskExecution {
         Objects.equals(this.uuid, patchedTaskExecution.uuid) &&
         Objects.equals(this.dashboardUrl, patchedTaskExecution.dashboardUrl) &&
         equalsNullable(this.infrastructureWebsiteUrl, patchedTaskExecution.infrastructureWebsiteUrl) &&
-        equalsNullable(this.task, patchedTaskExecution.task) &&
+        Objects.equals(this.task, patchedTaskExecution.task) &&
         equalsNullable(this.taskVersionNumber, patchedTaskExecution.taskVersionNumber) &&
         equalsNullable(this.taskVersionText, patchedTaskExecution.taskVersionText) &&
         equalsNullable(this.taskVersionSignature, patchedTaskExecution.taskVersionSignature) &&
@@ -2836,7 +2833,7 @@ public class PatchedTaskExecution {
 
   @Override
   public int hashCode() {
-    return Objects.hash(url, uuid, dashboardUrl, hashCodeNullable(infrastructureWebsiteUrl), hashCodeNullable(task), hashCodeNullable(taskVersionNumber), hashCodeNullable(taskVersionText), hashCodeNullable(taskVersionSignature), hashCodeNullable(commitUrl), hashCodeNullable(otherInstanceMetadata), hashCodeNullable(hostname), hashCodeNullable(environmentVariablesOverrides), hashCodeNullable(executionMethod), status, startedBy, startedAt, hashCodeNullable(finishedAt), markedDoneBy, hashCodeNullable(markedDoneAt), hashCodeNullable(markedOutdatedAt), killedBy, hashCodeNullable(killStartedAt), hashCodeNullable(killFinishedAt), hashCodeNullable(killErrorCode), stopReason, hashCodeNullable(lastHeartbeatAt), failedAttempts, timedOutAttempts, hashCodeNullable(exitCode), hashCodeNullable(lastStatusMessage), hashCodeNullable(errorCount), hashCodeNullable(skippedCount), hashCodeNullable(expectedCount), hashCodeNullable(successCount), hashCodeNullable(otherRuntimeMetadata), hashCodeNullable(currentCpuUnits), hashCodeNullable(meanCpuUnits), hashCodeNullable(maxCpuUnits), hashCodeNullable(currentMemoryMb), hashCodeNullable(meanMemoryMb), hashCodeNullable(maxMemoryMb), hashCodeNullable(wrapperVersion), hashCodeNullable(wrapperLogLevel), hashCodeNullable(deployment), hashCodeNullable(processCommand), hashCodeNullable(isService), hashCodeNullable(taskMaxConcurrency), hashCodeNullable(maxConflictingAgeSeconds), hashCodeNullable(preventOfflineExecution), hashCodeNullable(processTimeoutSeconds), hashCodeNullable(processTerminationGracePeriodSeconds), hashCodeNullable(processMaxRetries), hashCodeNullable(processRetryDelaySeconds), hashCodeNullable(schedule), hashCodeNullable(heartbeatIntervalSeconds), workflowTaskInstanceExecution, apiBaseUrl, hashCodeNullable(apiRequestTimeoutSeconds), hashCodeNullable(apiRetryDelaySeconds), hashCodeNullable(apiResumeDelaySeconds), hashCodeNullable(apiErrorTimeoutSeconds), hashCodeNullable(apiTaskExecutionCreationErrorTimeoutSeconds), hashCodeNullable(apiTaskExecutionCreationConflictTimeoutSeconds), hashCodeNullable(apiTaskExecutionCreationConflictRetryDelaySeconds), hashCodeNullable(apiFinalUpdateTimeoutSeconds), hashCodeNullable(statusUpdateIntervalSeconds), hashCodeNullable(statusUpdatePort), hashCodeNullable(statusUpdateMessageMaxBytes), hashCodeNullable(debugLogTail), hashCodeNullable(errorLogTail), hashCodeNullable(embeddedMode), createdAt, updatedAt);
+    return Objects.hash(url, uuid, dashboardUrl, hashCodeNullable(infrastructureWebsiteUrl), task, hashCodeNullable(taskVersionNumber), hashCodeNullable(taskVersionText), hashCodeNullable(taskVersionSignature), hashCodeNullable(commitUrl), hashCodeNullable(otherInstanceMetadata), hashCodeNullable(hostname), hashCodeNullable(environmentVariablesOverrides), hashCodeNullable(executionMethod), status, startedBy, startedAt, hashCodeNullable(finishedAt), markedDoneBy, hashCodeNullable(markedDoneAt), hashCodeNullable(markedOutdatedAt), killedBy, hashCodeNullable(killStartedAt), hashCodeNullable(killFinishedAt), hashCodeNullable(killErrorCode), stopReason, hashCodeNullable(lastHeartbeatAt), failedAttempts, timedOutAttempts, hashCodeNullable(exitCode), hashCodeNullable(lastStatusMessage), hashCodeNullable(errorCount), hashCodeNullable(skippedCount), hashCodeNullable(expectedCount), hashCodeNullable(successCount), hashCodeNullable(otherRuntimeMetadata), hashCodeNullable(currentCpuUnits), hashCodeNullable(meanCpuUnits), hashCodeNullable(maxCpuUnits), hashCodeNullable(currentMemoryMb), hashCodeNullable(meanMemoryMb), hashCodeNullable(maxMemoryMb), hashCodeNullable(wrapperVersion), hashCodeNullable(wrapperLogLevel), hashCodeNullable(deployment), hashCodeNullable(processCommand), hashCodeNullable(isService), hashCodeNullable(taskMaxConcurrency), hashCodeNullable(maxConflictingAgeSeconds), hashCodeNullable(preventOfflineExecution), hashCodeNullable(processTimeoutSeconds), hashCodeNullable(processTerminationGracePeriodSeconds), hashCodeNullable(processMaxRetries), hashCodeNullable(processRetryDelaySeconds), hashCodeNullable(schedule), hashCodeNullable(heartbeatIntervalSeconds), workflowTaskInstanceExecution, apiBaseUrl, hashCodeNullable(apiRequestTimeoutSeconds), hashCodeNullable(apiRetryDelaySeconds), hashCodeNullable(apiResumeDelaySeconds), hashCodeNullable(apiErrorTimeoutSeconds), hashCodeNullable(apiTaskExecutionCreationErrorTimeoutSeconds), hashCodeNullable(apiTaskExecutionCreationConflictTimeoutSeconds), hashCodeNullable(apiTaskExecutionCreationConflictRetryDelaySeconds), hashCodeNullable(apiFinalUpdateTimeoutSeconds), hashCodeNullable(statusUpdateIntervalSeconds), hashCodeNullable(statusUpdatePort), hashCodeNullable(statusUpdateMessageMaxBytes), hashCodeNullable(debugLogTail), hashCodeNullable(errorLogTail), hashCodeNullable(embeddedMode), createdAt, updatedAt);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {

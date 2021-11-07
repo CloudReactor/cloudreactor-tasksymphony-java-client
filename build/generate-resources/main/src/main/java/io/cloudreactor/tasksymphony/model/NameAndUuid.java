@@ -27,9 +27,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * Identifies an entity in three ways: 1) UUID 2) Name 3) URL
+ * Identifies an entity in three ways: 1. UUID; 2. Name; and 3. URL. When used to indentify an entity in a request method body, only one of uuid and name needs to be specified. If both are present, they must refer to the same entity or else the response will be a 400 error.
  */
-@ApiModel(description = "Identifies an entity in three ways: 1) UUID 2) Name 3) URL")
+@ApiModel(description = "Identifies an entity in three ways: 1. UUID; 2. Name; and 3. URL. When used to indentify an entity in a request method body, only one of uuid and name needs to be specified. If both are present, they must refer to the same entity or else the response will be a 400 error.")
 @JsonPropertyOrder({
   NameAndUuid.JSON_PROPERTY_UUID,
   NameAndUuid.JSON_PROPERTY_URL,
@@ -58,10 +58,10 @@ public class NameAndUuid {
    * Get uuid
    * @return uuid
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_UUID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public UUID getUuid() {
     return uuid;
@@ -69,7 +69,7 @@ public class NameAndUuid {
 
 
   @JsonProperty(JSON_PROPERTY_UUID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUuid(UUID uuid) {
     this.uuid = uuid;
   }
@@ -101,10 +101,10 @@ public class NameAndUuid {
    * Get name
    * @return name
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getName() {
     return name;
@@ -112,7 +112,7 @@ public class NameAndUuid {
 
 
   @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }

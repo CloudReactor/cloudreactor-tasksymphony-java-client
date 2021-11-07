@@ -71,10 +71,10 @@ public class PatchedWorkflowTransition {
   private String description;
 
   public static final String JSON_PROPERTY_FROM_WORKFLOW_TASK_INSTANCE = "from_workflow_task_instance";
-  private JsonNullable<NameAndUuid> fromWorkflowTaskInstance = JsonNullable.<NameAndUuid>undefined();
+  private NameAndUuid fromWorkflowTaskInstance;
 
   public static final String JSON_PROPERTY_TO_WORKFLOW_TASK_INSTANCE = "to_workflow_task_instance";
-  private JsonNullable<NameAndUuid> toWorkflowTaskInstance = JsonNullable.<NameAndUuid>undefined();
+  private NameAndUuid toWorkflowTaskInstance;
 
   public static final String JSON_PROPERTY_RULE_TYPE = "rule_type";
   private RuleTypeEnum ruleType;
@@ -166,35 +166,38 @@ public class PatchedWorkflowTransition {
   }
 
 
+  public PatchedWorkflowTransition fromWorkflowTaskInstance(NameAndUuid fromWorkflowTaskInstance) {
+    
+    this.fromWorkflowTaskInstance = fromWorkflowTaskInstance;
+    return this;
+  }
+
    /**
    * Get fromWorkflowTaskInstance
    * @return fromWorkflowTaskInstance
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonIgnore
-
-  public NameAndUuid getFromWorkflowTaskInstance() {
-    
-    if (fromWorkflowTaskInstance == null) {
-      fromWorkflowTaskInstance = JsonNullable.<NameAndUuid>undefined();
-    }
-    return fromWorkflowTaskInstance.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_FROM_WORKFLOW_TASK_INSTANCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<NameAndUuid> getFromWorkflowTaskInstance_JsonNullable() {
+  public NameAndUuid getFromWorkflowTaskInstance() {
     return fromWorkflowTaskInstance;
   }
-  
+
+
   @JsonProperty(JSON_PROPERTY_FROM_WORKFLOW_TASK_INSTANCE)
-  private void setFromWorkflowTaskInstance_JsonNullable(JsonNullable<NameAndUuid> fromWorkflowTaskInstance) {
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFromWorkflowTaskInstance(NameAndUuid fromWorkflowTaskInstance) {
     this.fromWorkflowTaskInstance = fromWorkflowTaskInstance;
   }
 
 
+  public PatchedWorkflowTransition toWorkflowTaskInstance(NameAndUuid toWorkflowTaskInstance) {
+    
+    this.toWorkflowTaskInstance = toWorkflowTaskInstance;
+    return this;
+  }
 
    /**
    * Get toWorkflowTaskInstance
@@ -202,28 +205,19 @@ public class PatchedWorkflowTransition {
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonIgnore
-
-  public NameAndUuid getToWorkflowTaskInstance() {
-    
-    if (toWorkflowTaskInstance == null) {
-      toWorkflowTaskInstance = JsonNullable.<NameAndUuid>undefined();
-    }
-    return toWorkflowTaskInstance.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_TO_WORKFLOW_TASK_INSTANCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<NameAndUuid> getToWorkflowTaskInstance_JsonNullable() {
+  public NameAndUuid getToWorkflowTaskInstance() {
     return toWorkflowTaskInstance;
   }
-  
+
+
   @JsonProperty(JSON_PROPERTY_TO_WORKFLOW_TASK_INSTANCE)
-  private void setToWorkflowTaskInstance_JsonNullable(JsonNullable<NameAndUuid> toWorkflowTaskInstance) {
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setToWorkflowTaskInstance(NameAndUuid toWorkflowTaskInstance) {
     this.toWorkflowTaskInstance = toWorkflowTaskInstance;
   }
-
 
 
   public PatchedWorkflowTransition ruleType(RuleTypeEnum ruleType) {
@@ -524,8 +518,8 @@ public class PatchedWorkflowTransition {
     return Objects.equals(this.url, patchedWorkflowTransition.url) &&
         Objects.equals(this.uuid, patchedWorkflowTransition.uuid) &&
         Objects.equals(this.description, patchedWorkflowTransition.description) &&
-        equalsNullable(this.fromWorkflowTaskInstance, patchedWorkflowTransition.fromWorkflowTaskInstance) &&
-        equalsNullable(this.toWorkflowTaskInstance, patchedWorkflowTransition.toWorkflowTaskInstance) &&
+        Objects.equals(this.fromWorkflowTaskInstance, patchedWorkflowTransition.fromWorkflowTaskInstance) &&
+        Objects.equals(this.toWorkflowTaskInstance, patchedWorkflowTransition.toWorkflowTaskInstance) &&
         Objects.equals(this.ruleType, patchedWorkflowTransition.ruleType) &&
         equalsNullable(this.exitCodes, patchedWorkflowTransition.exitCodes) &&
         Objects.equals(this.thresholdProperty, patchedWorkflowTransition.thresholdProperty) &&
@@ -544,7 +538,7 @@ public class PatchedWorkflowTransition {
 
   @Override
   public int hashCode() {
-    return Objects.hash(url, uuid, description, hashCodeNullable(fromWorkflowTaskInstance), hashCodeNullable(toWorkflowTaskInstance), ruleType, hashCodeNullable(exitCodes), thresholdProperty, customExpression, hashCodeNullable(priority), uiColor, uiLineStyle, hashCodeNullable(uiScale), createdAt, updatedAt);
+    return Objects.hash(url, uuid, description, fromWorkflowTaskInstance, toWorkflowTaskInstance, ruleType, hashCodeNullable(exitCodes), thresholdProperty, customExpression, hashCodeNullable(priority), uiColor, uiLineStyle, hashCodeNullable(uiScale), createdAt, updatedAt);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {

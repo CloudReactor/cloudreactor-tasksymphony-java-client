@@ -166,11 +166,17 @@ public class WorkflowTransition {
   }
 
 
+  public WorkflowTransition fromWorkflowTaskInstance(NameAndUuid fromWorkflowTaskInstance) {
+    
+    this.fromWorkflowTaskInstance = fromWorkflowTaskInstance;
+    return this;
+  }
+
    /**
    * Get fromWorkflowTaskInstance
    * @return fromWorkflowTaskInstance
   **/
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_FROM_WORKFLOW_TASK_INSTANCE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -180,13 +186,24 @@ public class WorkflowTransition {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_FROM_WORKFLOW_TASK_INSTANCE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setFromWorkflowTaskInstance(NameAndUuid fromWorkflowTaskInstance) {
+    this.fromWorkflowTaskInstance = fromWorkflowTaskInstance;
+  }
 
+
+  public WorkflowTransition toWorkflowTaskInstance(NameAndUuid toWorkflowTaskInstance) {
+    
+    this.toWorkflowTaskInstance = toWorkflowTaskInstance;
+    return this;
+  }
 
    /**
    * Get toWorkflowTaskInstance
    * @return toWorkflowTaskInstance
   **/
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_TO_WORKFLOW_TASK_INSTANCE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -196,6 +213,11 @@ public class WorkflowTransition {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_TO_WORKFLOW_TASK_INSTANCE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setToWorkflowTaskInstance(NameAndUuid toWorkflowTaskInstance) {
+    this.toWorkflowTaskInstance = toWorkflowTaskInstance;
+  }
 
 
   public WorkflowTransition ruleType(RuleTypeEnum ruleType) {

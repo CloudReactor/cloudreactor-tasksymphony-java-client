@@ -7,13 +7,57 @@
 This Java library consists of 2 parts:
 
 1) The CloudReactor API client allows JVM applications to programmatically 
-monitor and manage Tasks and Workflows. Most notably you can start and stop
+create, monitor, and manage Tasks and Workflows. Most notably you can start and stop
 Tasks and Workflows by creating Task Executions and Workflow Executions. 
 
 2) The Wrapper I/O package allows a JVM process to communicate with the 
 [CloudReactor wrapper](https://github.com/CloudReactor/cloudreactor-procwrapper) 
 which is the parent process. 
- 
+
+## API Client
+
+The API client allows your program to control various entities in CloudReactor,
+most notable Tasks and Workflows. To start an existing Task, create a 
+TaskExecution linked to the Task, with a status of `MANUALLY_STARTED`:
+
+```java
+import io.cloudreactor.tasksymphony.invoker.ApiClient;
+import io.cloudreactor.tasksymphony.invoker.ApiException;
+import io.cloudreactor.tasksymphony.invoker.Configuration;
+import io.cloudreactor.tasksymphony.invoker.auth.*;
+import io.cloudreactor.tasksymphony.invoker.models.*;
+import io.cloudreactor.tasksymphony.api.TaskExecutionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        
+        // Configure API key authorization: tokenAuth
+        ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
+        tokenAuth.setApiKey("YOUR API KEY");
+
+        TaskExecutionsApi apiInstance = new TaskExecutionsApi(defaultClient);
+        TaskExecution taskExecution = new TaskExecutionRequest();
+        NameAndUuid task = new NameAndUuid();
+        // Either UUID or name of the Task has to be specified to identify the Task
+        task.setName("My Task");          
+        
+        taskExecution.setTask(task);
+        taskExecution.setStatus("MANUALLY_STARTED");
+        
+        try {
+            TaskExecution result = apiInstance.taskExecutionsCreate(taskExecution);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TaskExecutionsApi#taskExecutionsCreate");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
  
 ## Wrapper I/O
 

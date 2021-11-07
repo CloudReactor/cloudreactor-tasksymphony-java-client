@@ -403,11 +403,17 @@ public class TaskExecution {
 
 
 
+  public TaskExecution task(NameAndUuid task) {
+    
+    this.task = task;
+    return this;
+  }
+
    /**
    * Get task
    * @return task
   **/
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_TASK)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -417,6 +423,11 @@ public class TaskExecution {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_TASK)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setTask(NameAndUuid task) {
+    this.task = task;
+  }
 
 
   public TaskExecution taskVersionNumber(Long taskVersionNumber) {

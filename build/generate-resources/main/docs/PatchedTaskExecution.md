@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **uuid** | **UUID** |  |  [optional] [readonly]
 **dashboardUrl** | **String** |  |  [optional] [readonly]
 **infrastructureWebsiteUrl** | **String** |  |  [optional] [readonly]
-**task** | [**NameAndUuid**](NameAndUuid.md) |  |  [optional] [readonly]
+**task** | [**NameAndUuid**](NameAndUuid.md) |  |  [optional]
 **taskVersionNumber** | **Long** |  |  [optional]
 **taskVersionText** | **String** |  |  [optional]
 **taskVersionSignature** | **String** |  |  [optional]

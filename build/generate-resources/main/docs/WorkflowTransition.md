@@ -11,8 +11,8 @@ Name | Type | Description | Notes
 **url** | **URI** |  |  [readonly]
 **uuid** | **UUID** |  |  [readonly]
 **description** | **String** |  |  [optional]
-**fromWorkflowTaskInstance** | [**NameAndUuid**](NameAndUuid.md) |  |  [readonly]
-**toWorkflowTaskInstance** | [**NameAndUuid**](NameAndUuid.md) |  |  [readonly]
+**fromWorkflowTaskInstance** | [**NameAndUuid**](NameAndUuid.md) |  | 
+**toWorkflowTaskInstance** | [**NameAndUuid**](NameAndUuid.md) |  | 
 **ruleType** | **RuleTypeEnum** |  | 
 **exitCodes** | **List&lt;String&gt;** |  |  [optional]
 **thresholdProperty** | **ThresholdPropertyEnum** |  |  [optional]
