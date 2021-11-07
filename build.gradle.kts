@@ -1,15 +1,21 @@
+import org.gradle.external.javadoc.CoreJavadocOptions
+
 import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
 
 plugins {
     `java-library`
     id("org.openapi.generator") version "5.3.0"
     `maven-publish`
+    id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
     idea
 }
-val GROUP = "io.cloudreactor.tasksymphony"
+val GROUP = "io.cloudreactor"
+val ARTIFACT = "tasksymphony"
+val PACKAGE = GROUP + "." + ARTIFACT
+val VERSION = "0.2.0-SNAPSHOT"
 
-group = GROUP
-version = "0.2.0-SNAPSHOT"
+group = PACKAGE
+version = VERSION
 
 repositories {
     mavenCentral()
@@ -55,6 +61,11 @@ configure<JavaPluginExtension> {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
 sourceSets {
     main {
         java.srcDir("build/generate-resources/main/src/main/java")
@@ -64,23 +75,12 @@ sourceSets {
     }
 }
 
-tasks.withType<Javadoc> {
-    this.setDestinationDir(File("docs"))
-}
-
-
-tasks.withType<Test> {
-    this.testLogging {
-        this.showStandardStreams = true
-    }
-}
-
 tasks.named<GenerateTask>("openApiGenerate") {
     generatorName.set("java")
     inputSpec.set("$rootDir/cloudreactor-openapi3.yml")
-    apiPackage.set("$GROUP.api")
-    invokerPackage.set("$GROUP.invoker")
-    modelPackage.set("$GROUP.model")
+    apiPackage.set("$PACKAGE.api")
+    invokerPackage.set("$PACKAGE.invoker")
+    modelPackage.set("$PACKAGE.model")
     library.set("apache-httpclient")
     configOptions.set(mapOf(
         "dateLibrary" to "java8",
@@ -91,16 +91,43 @@ tasks.compileJava {
     dependsOn(tasks.named("openApiGenerate"))
 }
 
+tasks.named<Jar>("sourcesJar") {
+    dependsOn(tasks.named("openApiGenerate"))
+}
+
+tasks.withType<Test> {
+    this.testLogging {
+        this.showStandardStreams = true
+    }
+}
+
+tasks.withType<Javadoc> {
+    this.setDestinationDir(File("docs"))
+    this.options {
+        this as CoreJavadocOptions
+        this.addStringOption("Xdoclint:-missing")
+    }
+}
+
+nexusPublishing {
+    repositories {
+        sonatype {
+            nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/"))
+            snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
+        }
+    }
+}
+
 publishing {
     publications {
         create<MavenPublication>("maven") {
-            groupId = "io.cloudreactor"
-            artifactId = "tasksymphony"
-            version = "0.1.0"
+            groupId = GROUP
+            artifactId = ARTIFACT
+            version = VERSION
             from(components["java"])
             pom {
                 name.set("CloudReactor Java API Client and Status Updater")
-                description.set("A concise description of my library")
+                description.set("API Client to monitor and manage CloudReactor Tasks and Workflows, and a status updater for processes run by a CloudReactor process wrapper.")
                 url.set("https://github.com/CloudReactor/cloudreactor-tasksymphony-java-client")
                 licenses {
                     license {
@@ -113,15 +140,16 @@ publishing {
                         id.set("jtsay")
                         name.set("Jeff Tsay")
                         email.set("jeff@cloudreactor.io")
+                        organization.set("CloudReactor")
+                        organizationUrl.set("https://cloudreactor.io")
                     }
                 }
                 scm {
-                    connection.set("scm:git:git://example.com/my-library.git")
-                    developerConnection.set("scm:git:ssh://example.com/my-library.git")
+                    connection.set("scm:git://github.com:CloudReactor/cloudreactor-tasksymphony-java-client.git")
+                    developerConnection.set("scm:git:ssh://github.com:CloudReactor/cloudreactor-tasksymphony-java-client.git")
                     url.set("https://github.com/CloudReactor/cloudreactor-tasksymphony-java-client")
                 }
             }
         }
     }
 }
-
