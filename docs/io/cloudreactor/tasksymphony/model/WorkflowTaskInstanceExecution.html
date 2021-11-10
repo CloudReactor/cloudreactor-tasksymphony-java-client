@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -48,7 +48,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../io/cloudreactor/tasksymphony/model/WorkflowTaskInstance.html" title="class in io.cloudreactor.tasksymphony.model"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../io/cloudreactor/tasksymphony/model/WorkflowTaskInstanceExecutionRequest.html" title="class in io.cloudreactor.tasksymphony.model"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../io/cloudreactor/tasksymphony/model/WorkflowTaskInstanceExecutionBase.html" title="class in io.cloudreactor.tasksymphony.model"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?io/cloudreactor/tasksymphony/model/WorkflowTaskInstanceExecution.html" target="_top">Frames</a></li>
@@ -230,22 +230,6 @@ extends java.lang.Object</pre>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/cloudreactor/tasksymphony/model/WorkflowTaskInstanceExecution.html#hashCode--">hashCode</a></span>()</code>&nbsp;</td>
 </tr>
 <tr id="i8" class="altColor">
-<td class="colFirst"><code><a href="../../../../io/cloudreactor/tasksymphony/model/WorkflowTaskInstanceExecution.html" title="class in io.cloudreactor.tasksymphony.model">WorkflowTaskInstanceExecution</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/cloudreactor/tasksymphony/model/WorkflowTaskInstanceExecution.html#isLatest-java.lang.Boolean-">isLatest</a></span>(java.lang.Boolean&nbsp;isLatest)</code>&nbsp;</td>
-</tr>
-<tr id="i9" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/cloudreactor/tasksymphony/model/WorkflowTaskInstanceExecution.html#setIsLatest-java.lang.Boolean-">setIsLatest</a></span>(java.lang.Boolean&nbsp;isLatest)</code>&nbsp;</td>
-</tr>
-<tr id="i10" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/cloudreactor/tasksymphony/model/WorkflowTaskInstanceExecution.html#setTaskExecution-io.cloudreactor.tasksymphony.model.TaskExecution-">setTaskExecution</a></span>(<a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html" title="class in io.cloudreactor.tasksymphony.model">TaskExecution</a>&nbsp;taskExecution)</code>&nbsp;</td>
-</tr>
-<tr id="i11" class="rowColor">
-<td class="colFirst"><code><a href="../../../../io/cloudreactor/tasksymphony/model/WorkflowTaskInstanceExecution.html" title="class in io.cloudreactor.tasksymphony.model">WorkflowTaskInstanceExecution</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/cloudreactor/tasksymphony/model/WorkflowTaskInstanceExecution.html#taskExecution-io.cloudreactor.tasksymphony.model.TaskExecution-">taskExecution</a></span>(<a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html" title="class in io.cloudreactor.tasksymphony.model">TaskExecution</a>&nbsp;taskExecution)</code>&nbsp;</td>
-</tr>
-<tr id="i12" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/cloudreactor/tasksymphony/model/WorkflowTaskInstanceExecution.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
@@ -419,22 +403,13 @@ public&nbsp;<a href="../../../../io/cloudreactor/tasksymphony/model/NameAndUuid.
 </dl>
 </li>
 </ul>
-<a name="taskExecution-io.cloudreactor.tasksymphony.model.TaskExecution-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>taskExecution</h4>
-<pre>public&nbsp;<a href="../../../../io/cloudreactor/tasksymphony/model/WorkflowTaskInstanceExecution.html" title="class in io.cloudreactor.tasksymphony.model">WorkflowTaskInstanceExecution</a>&nbsp;taskExecution(<a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html" title="class in io.cloudreactor.tasksymphony.model">TaskExecution</a>&nbsp;taskExecution)</pre>
-</li>
-</ul>
 <a name="getTaskExecution--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getTaskExecution</h4>
-<pre>@Nonnull
+<pre>@Nullable
 public&nbsp;<a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html" title="class in io.cloudreactor.tasksymphony.model">TaskExecution</a>&nbsp;getTaskExecution()</pre>
 <div class="block">Get taskExecution</div>
 <dl>
@@ -443,46 +418,19 @@ public&nbsp;<a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecutio
 </dl>
 </li>
 </ul>
-<a name="setTaskExecution-io.cloudreactor.tasksymphony.model.TaskExecution-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setTaskExecution</h4>
-<pre>public&nbsp;void&nbsp;setTaskExecution(<a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html" title="class in io.cloudreactor.tasksymphony.model">TaskExecution</a>&nbsp;taskExecution)</pre>
-</li>
-</ul>
-<a name="isLatest-java.lang.Boolean-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>isLatest</h4>
-<pre>public&nbsp;<a href="../../../../io/cloudreactor/tasksymphony/model/WorkflowTaskInstanceExecution.html" title="class in io.cloudreactor.tasksymphony.model">WorkflowTaskInstanceExecution</a>&nbsp;isLatest(java.lang.Boolean&nbsp;isLatest)</pre>
-</li>
-</ul>
 <a name="getIsLatest--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getIsLatest</h4>
-<pre>@Nullable
+<pre>@Nonnull
 public&nbsp;java.lang.Boolean&nbsp;getIsLatest()</pre>
 <div class="block">Get isLatest</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>isLatest</dd>
 </dl>
-</li>
-</ul>
-<a name="setIsLatest-java.lang.Boolean-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setIsLatest</h4>
-<pre>public&nbsp;void&nbsp;setIsLatest(java.lang.Boolean&nbsp;isLatest)</pre>
 </li>
 </ul>
 <a name="getCreatedAt--">
@@ -567,7 +515,7 @@ public&nbsp;java.time.OffsetDateTime&nbsp;getCreatedAt()</pre>
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../io/cloudreactor/tasksymphony/model/WorkflowTaskInstance.html" title="class in io.cloudreactor.tasksymphony.model"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../io/cloudreactor/tasksymphony/model/WorkflowTaskInstanceExecutionRequest.html" title="class in io.cloudreactor.tasksymphony.model"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../io/cloudreactor/tasksymphony/model/WorkflowTaskInstanceExecutionBase.html" title="class in io.cloudreactor.tasksymphony.model"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?io/cloudreactor/tasksymphony/model/WorkflowTaskInstanceExecution.html" target="_top">Frames</a></li>

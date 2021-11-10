@@ -32,18 +32,14 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         
-        // Configure API key authorization: tokenAuth
         ApiKeyAuth tokenAuth = (ApiKeyAuth) defaultClient.getAuthentication("tokenAuth");
         tokenAuth.setApiKey("YOUR API KEY");
 
         TaskExecutionsApi apiInstance = new TaskExecutionsApi(defaultClient);
-        TaskExecution taskExecution = new TaskExecutionRequest();
-        NameAndUuid task = new NameAndUuid();
-        // Either UUID or name of the Task has to be specified to identify the Task
-        task.setName("My Task");          
-        
-        taskExecution.setTask(task);
-        taskExecution.setStatus("MANUALLY_STARTED");
+        TaskExecution taskExecution = new TaskExecution().task(
+            // Either UUID or name of the Task has to be specified to identify the Task
+            new NameAndUuid().name("My Task"))
+            .status(TaskExecutionStatus.MANUALLY_STARTED);
         
         try {
             TaskExecution result = apiInstance.taskExecutionsCreate(taskExecution);

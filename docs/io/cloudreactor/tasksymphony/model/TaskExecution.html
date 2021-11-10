@@ -48,7 +48,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../io/cloudreactor/tasksymphony/model/Task.html" title="class in io.cloudreactor.tasksymphony.model"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecutionRequest.html" title="class in io.cloudreactor.tasksymphony.model"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecutionStatus.html" title="enum in io.cloudreactor.tasksymphony.model"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?io/cloudreactor/tasksymphony/model/TaskExecution.html" target="_top">Frames</a></li>
@@ -663,7 +663,7 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>java.lang.Integer</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html#getCurrentCpuUnits--">getCurrentCpuUnits</a></span>()</code>
 <div class="block">Get currentCpuUnits
- minimum: -2147483648
+ minimum: 0
  maximum: 2147483647</div>
 </td>
 </tr>
@@ -675,7 +675,7 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>java.lang.Integer</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html#getCurrentMemoryMb--">getCurrentMemoryMb</a></span>()</code>
 <div class="block">Get currentMemoryMb
- minimum: -2147483648
+ minimum: 0
  maximum: 2147483647</div>
 </td>
 </tr>
@@ -781,7 +781,7 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>java.lang.Integer</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html#getFailedAttempts--">getFailedAttempts</a></span>()</code>
 <div class="block">Get failedAttempts
- minimum: -2147483648
+ minimum: 0
  maximum: 2147483647</div>
 </td>
 </tr>
@@ -803,7 +803,7 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>java.lang.Integer</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html#getHeartbeatIntervalSeconds--">getHeartbeatIntervalSeconds</a></span>()</code>
 <div class="block">Get heartbeatIntervalSeconds
- minimum: 0
+ minimum: -2147483648
  maximum: 2147483647</div>
 </td>
 </tr>
@@ -961,7 +961,7 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>java.lang.Integer</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html#getMeanCpuUnits--">getMeanCpuUnits</a></span>()</code>
 <div class="block">Get meanCpuUnits
- minimum: -2147483648
+ minimum: 0
  maximum: 2147483647</div>
 </td>
 </tr>
@@ -973,7 +973,7 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>java.lang.Integer</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html#getMeanMemoryMb--">getMeanMemoryMb</a></span>()</code>
 <div class="block">Get meanMemoryMb
- minimum: -2147483648
+ minimum: 0
  maximum: 2147483647</div>
 </td>
 </tr>
@@ -1100,7 +1100,7 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i121" class="rowColor">
-<td class="colFirst"><code>java.lang.String</code></td>
+<td class="colFirst"><code><a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecutionStatus.html" title="enum in io.cloudreactor.tasksymphony.model">TaskExecutionStatus</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html#getStatus--">getStatus</a></span>()</code>
 <div class="block">Get status</div>
 </td>
@@ -1142,7 +1142,7 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i128" class="altColor">
-<td class="colFirst"><code>java.lang.String</code></td>
+<td class="colFirst"><code><a href="../../../../io/cloudreactor/tasksymphony/model/StopReasonEnum.html" title="enum in io.cloudreactor.tasksymphony.model">StopReasonEnum</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html#getStopReason--">getStopReason</a></span>()</code>
 <div class="block">Get stopReason</div>
 </td>
@@ -1213,7 +1213,7 @@ extends java.lang.Object</pre>
 <td class="colFirst"><code>java.lang.Integer</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html#getTimedOutAttempts--">getTimedOutAttempts</a></span>()</code>
 <div class="block">Get timedOutAttempts
- minimum: -2147483648
+ minimum: 0
  maximum: 2147483647</div>
 </td>
 </tr>
@@ -1236,7 +1236,7 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i144" class="altColor">
-<td class="colFirst"><code>java.lang.String</code></td>
+<td class="colFirst"><code><a href="../../../../io/cloudreactor/tasksymphony/model/WorkflowTaskInstanceExecutionBase.html" title="class in io.cloudreactor.tasksymphony.model">WorkflowTaskInstanceExecutionBase</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html#getWorkflowTaskInstanceExecution--">getWorkflowTaskInstanceExecution</a></span>()</code>
 <div class="block">Get workflowTaskInstanceExecution</div>
 </td>
@@ -1738,7 +1738,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i267" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html#setStatus-java.lang.String-">setStatus</a></span>(java.lang.String&nbsp;status)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html#setStatus-io.cloudreactor.tasksymphony.model.TaskExecutionStatus-">setStatus</a></span>(<a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecutionStatus.html" title="enum in io.cloudreactor.tasksymphony.model">TaskExecutionStatus</a>&nbsp;status)</code>&nbsp;</td>
 </tr>
 <tr id="i268" class="altColor">
 <td class="colFirst"><code>void</code></td>
@@ -1766,7 +1766,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i274" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html#setStopReason-java.lang.String-">setStopReason</a></span>(java.lang.String&nbsp;stopReason)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html#setStopReason-io.cloudreactor.tasksymphony.model.StopReasonEnum-">setStopReason</a></span>(<a href="../../../../io/cloudreactor/tasksymphony/model/StopReasonEnum.html" title="enum in io.cloudreactor.tasksymphony.model">StopReasonEnum</a>&nbsp;stopReason)</code>&nbsp;</td>
 </tr>
 <tr id="i275" class="rowColor">
 <td class="colFirst"><code>void</code></td>
@@ -1838,7 +1838,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i292" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html" title="class in io.cloudreactor.tasksymphony.model">TaskExecution</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html#status-java.lang.String-">status</a></span>(java.lang.String&nbsp;status)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html#status-io.cloudreactor.tasksymphony.model.TaskExecutionStatus-">status</a></span>(<a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecutionStatus.html" title="enum in io.cloudreactor.tasksymphony.model">TaskExecutionStatus</a>&nbsp;status)</code>&nbsp;</td>
 </tr>
 <tr id="i293" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html" title="class in io.cloudreactor.tasksymphony.model">TaskExecution</a></code></td>
@@ -1854,7 +1854,7 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i296" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html" title="class in io.cloudreactor.tasksymphony.model">TaskExecution</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html#stopReason-java.lang.String-">stopReason</a></span>(java.lang.String&nbsp;stopReason)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html#stopReason-io.cloudreactor.tasksymphony.model.StopReasonEnum-">stopReason</a></span>(<a href="../../../../io/cloudreactor/tasksymphony/model/StopReasonEnum.html" title="enum in io.cloudreactor.tasksymphony.model">StopReasonEnum</a>&nbsp;stopReason)</code>&nbsp;</td>
 </tr>
 <tr id="i297" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html" title="class in io.cloudreactor.tasksymphony.model">TaskExecution</a></code></td>
@@ -3343,13 +3343,13 @@ public&nbsp;<a href="../../../../io/cloudreactor/tasksymphony/model/AwsEcsExecut
 </dl>
 </li>
 </ul>
-<a name="status-java.lang.String-">
+<a name="status-io.cloudreactor.tasksymphony.model.TaskExecutionStatus-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>status</h4>
-<pre>public&nbsp;<a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html" title="class in io.cloudreactor.tasksymphony.model">TaskExecution</a>&nbsp;status(java.lang.String&nbsp;status)</pre>
+<pre>public&nbsp;<a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html" title="class in io.cloudreactor.tasksymphony.model">TaskExecution</a>&nbsp;status(<a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecutionStatus.html" title="enum in io.cloudreactor.tasksymphony.model">TaskExecutionStatus</a>&nbsp;status)</pre>
 </li>
 </ul>
 <a name="getStatus--">
@@ -3359,7 +3359,7 @@ public&nbsp;<a href="../../../../io/cloudreactor/tasksymphony/model/AwsEcsExecut
 <li class="blockList">
 <h4>getStatus</h4>
 <pre>@Nonnull
-public&nbsp;java.lang.String&nbsp;getStatus()</pre>
+public&nbsp;<a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecutionStatus.html" title="enum in io.cloudreactor.tasksymphony.model">TaskExecutionStatus</a>&nbsp;getStatus()</pre>
 <div class="block">Get status</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -3367,13 +3367,13 @@ public&nbsp;java.lang.String&nbsp;getStatus()</pre>
 </dl>
 </li>
 </ul>
-<a name="setStatus-java.lang.String-">
+<a name="setStatus-io.cloudreactor.tasksymphony.model.TaskExecutionStatus-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setStatus</h4>
-<pre>public&nbsp;void&nbsp;setStatus(java.lang.String&nbsp;status)</pre>
+<pre>public&nbsp;void&nbsp;setStatus(<a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecutionStatus.html" title="enum in io.cloudreactor.tasksymphony.model">TaskExecutionStatus</a>&nbsp;status)</pre>
 </li>
 </ul>
 <a name="getStartedBy--">
@@ -3744,13 +3744,13 @@ public&nbsp;java.lang.Integer&nbsp;getKillErrorCode()</pre>
 <pre>public&nbsp;void&nbsp;setKillErrorCode(java.lang.Integer&nbsp;killErrorCode)</pre>
 </li>
 </ul>
-<a name="stopReason-java.lang.String-">
+<a name="stopReason-io.cloudreactor.tasksymphony.model.StopReasonEnum-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>stopReason</h4>
-<pre>public&nbsp;<a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html" title="class in io.cloudreactor.tasksymphony.model">TaskExecution</a>&nbsp;stopReason(java.lang.String&nbsp;stopReason)</pre>
+<pre>public&nbsp;<a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecution.html" title="class in io.cloudreactor.tasksymphony.model">TaskExecution</a>&nbsp;stopReason(<a href="../../../../io/cloudreactor/tasksymphony/model/StopReasonEnum.html" title="enum in io.cloudreactor.tasksymphony.model">StopReasonEnum</a>&nbsp;stopReason)</pre>
 </li>
 </ul>
 <a name="getStopReason--">
@@ -3760,7 +3760,7 @@ public&nbsp;java.lang.Integer&nbsp;getKillErrorCode()</pre>
 <li class="blockList">
 <h4>getStopReason</h4>
 <pre>@Nullable
-public&nbsp;java.lang.String&nbsp;getStopReason()</pre>
+public&nbsp;<a href="../../../../io/cloudreactor/tasksymphony/model/StopReasonEnum.html" title="enum in io.cloudreactor.tasksymphony.model">StopReasonEnum</a>&nbsp;getStopReason()</pre>
 <div class="block">Get stopReason</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -3768,13 +3768,13 @@ public&nbsp;java.lang.String&nbsp;getStopReason()</pre>
 </dl>
 </li>
 </ul>
-<a name="setStopReason-java.lang.String-">
+<a name="setStopReason-io.cloudreactor.tasksymphony.model.StopReasonEnum-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setStopReason</h4>
-<pre>public&nbsp;void&nbsp;setStopReason(java.lang.String&nbsp;stopReason)</pre>
+<pre>public&nbsp;void&nbsp;setStopReason(<a href="../../../../io/cloudreactor/tasksymphony/model/StopReasonEnum.html" title="enum in io.cloudreactor.tasksymphony.model">StopReasonEnum</a>&nbsp;stopReason)</pre>
 </li>
 </ul>
 <a name="lastHeartbeatAt-java.time.OffsetDateTime-">
@@ -3846,7 +3846,7 @@ public&nbsp;java.time.OffsetDateTime&nbsp;getLastHeartbeatAt()</pre>
 <pre>@Nullable
 public&nbsp;java.lang.Integer&nbsp;getFailedAttempts()</pre>
 <div class="block">Get failedAttempts
- minimum: -2147483648
+ minimum: 0
  maximum: 2147483647</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -3881,7 +3881,7 @@ public&nbsp;java.lang.Integer&nbsp;getFailedAttempts()</pre>
 <pre>@Nullable
 public&nbsp;java.lang.Integer&nbsp;getTimedOutAttempts()</pre>
 <div class="block">Get timedOutAttempts
- minimum: -2147483648
+ minimum: 0
  maximum: 2147483647</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -4293,7 +4293,7 @@ public&nbsp;java.util.Map&lt;java.lang.String,java.lang.Object&gt;&nbsp;getOther
 <pre>@Nullable
 public&nbsp;java.lang.Integer&nbsp;getCurrentCpuUnits()</pre>
 <div class="block">Get currentCpuUnits
- minimum: -2147483648
+ minimum: 0
  maximum: 2147483647</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -4346,7 +4346,7 @@ public&nbsp;java.lang.Integer&nbsp;getCurrentCpuUnits()</pre>
 <pre>@Nullable
 public&nbsp;java.lang.Integer&nbsp;getMeanCpuUnits()</pre>
 <div class="block">Get meanCpuUnits
- minimum: -2147483648
+ minimum: 0
  maximum: 2147483647</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -4452,7 +4452,7 @@ public&nbsp;java.lang.Integer&nbsp;getMaxCpuUnits()</pre>
 <pre>@Nullable
 public&nbsp;java.lang.Integer&nbsp;getCurrentMemoryMb()</pre>
 <div class="block">Get currentMemoryMb
- minimum: -2147483648
+ minimum: 0
  maximum: 2147483647</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -4505,7 +4505,7 @@ public&nbsp;java.lang.Integer&nbsp;getCurrentMemoryMb()</pre>
 <pre>@Nullable
 public&nbsp;java.lang.Integer&nbsp;getMeanMemoryMb()</pre>
 <div class="block">Get meanMemoryMb
- minimum: -2147483648
+ minimum: 0
  maximum: 2147483647</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -5286,7 +5286,7 @@ public&nbsp;java.lang.String&nbsp;getSchedule()</pre>
 <pre>@Nullable
 public&nbsp;java.lang.Integer&nbsp;getHeartbeatIntervalSeconds()</pre>
 <div class="block">Get heartbeatIntervalSeconds
- minimum: 0
+ minimum: -2147483648
  maximum: 2147483647</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -5327,8 +5327,8 @@ public&nbsp;java.lang.Integer&nbsp;getHeartbeatIntervalSeconds()</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>getWorkflowTaskInstanceExecution</h4>
-<pre>@Nonnull
-public&nbsp;java.lang.String&nbsp;getWorkflowTaskInstanceExecution()</pre>
+<pre>@Nullable
+public&nbsp;<a href="../../../../io/cloudreactor/tasksymphony/model/WorkflowTaskInstanceExecutionBase.html" title="class in io.cloudreactor.tasksymphony.model">WorkflowTaskInstanceExecutionBase</a>&nbsp;getWorkflowTaskInstanceExecution()</pre>
 <div class="block">Get workflowTaskInstanceExecution</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -6202,7 +6202,7 @@ public&nbsp;java.time.OffsetDateTime&nbsp;getUpdatedAt()</pre>
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../io/cloudreactor/tasksymphony/model/Task.html" title="class in io.cloudreactor.tasksymphony.model"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecutionRequest.html" title="class in io.cloudreactor.tasksymphony.model"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../io/cloudreactor/tasksymphony/model/TaskExecutionStatus.html" title="enum in io.cloudreactor.tasksymphony.model"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?io/cloudreactor/tasksymphony/model/TaskExecution.html" target="_top">Frames</a></li>
