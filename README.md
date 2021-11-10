@@ -14,19 +14,23 @@ Tasks and Workflows by creating Task Executions and Workflow Executions.
 [CloudReactor wrapper](https://github.com/CloudReactor/cloudreactor-procwrapper) 
 which is the parent process. 
 
+See the [CloudReactor landing page](https://www.cloudreactor.io/) to see the
+benefits of monitoring and managing your tasks with CloudReactor.
+
 ## API Client
 
 The API client allows your program to control various entities in CloudReactor,
 most notable Tasks and Workflows. To start an existing Task, create a 
-TaskExecution linked to the Task, with a status of `MANUALLY_STARTED`:
+TaskExecution linked to the Task, with a status of 
+`TaskExecutionStatus.MANUALLY_STARTED`:
 
 ```java
+import io.cloudreactor.tasksymphony.api.TaskExecutionsApi;
 import io.cloudreactor.tasksymphony.invoker.ApiClient;
 import io.cloudreactor.tasksymphony.invoker.ApiException;
 import io.cloudreactor.tasksymphony.invoker.Configuration;
 import io.cloudreactor.tasksymphony.invoker.auth.*;
 import io.cloudreactor.tasksymphony.invoker.models.*;
-import io.cloudreactor.tasksymphony.api.TaskExecutionsApi;
 
 public class Example {
     public static void main(String[] args) {
@@ -36,6 +40,8 @@ public class Example {
         tokenAuth.setApiKey("YOUR API KEY");
 
         TaskExecutionsApi apiInstance = new TaskExecutionsApi(defaultClient);
+        
+        // Use the fluent API instead of setX() methods which are an alternative.
         TaskExecution taskExecution = new TaskExecution().task(
             // Either UUID or name of the Task has to be specified to identify the Task
             new NameAndUuid().name("My Task"))
@@ -54,13 +60,18 @@ public class Example {
     }
 }
 ```
+
+Note that you don't need to know the details of how the Task runs, because
+the default settings (populated when the Task was created during deployment) 
+are used unless you override them.
  
 ## Wrapper I/O
 
-`io.cloudreactor.tasksymphony.wrapperio`
-
-5) , so it can send updates about your process to the CloudReactor API
-server. Updates can include:
+While running a JVM process that is wrapped by the CloudReactor proc_wrapper,
+you can use `io.cloudreactor.tasksymphony.wrapperio.TaskStatusUpdater` to
+send updates about your process to the wrapper. The wrapper will send those
+updates to the CloudReactor API server during its next heartbeat.
+Updates can include:
 
 * success count
 * error count
@@ -69,10 +80,11 @@ server. Updates can include:
 * last status message
 * any additional properties that can be serialized into JSON
 
-See the [CloudReactor landing page](https://www.cloudreactor.io/) to see the benefits of monitoring and managing your 
-tasks with CloudReactor.
+Updates are communicated via a local UDP socket which means they are 
+theoretically unreliable. However, in practice, updates are almost always
+picked up correctly.
 
-## Example usage
+### Example usage
 
     // Use the environment variables 
     // PROC_WRAPPER_ENABLE_STATUS_UPDATE_LISTENER
