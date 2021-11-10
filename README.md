@@ -26,11 +26,12 @@ TaskExecution linked to the Task, with a status of
 
 ```java
 import io.cloudreactor.tasksymphony.api.TaskExecutionsApi;
+import io.cloudreactor.tasksymphony.auth.*;
+import io.cloudreactor.tasksymphony.model.*;
 import io.cloudreactor.tasksymphony.invoker.ApiClient;
 import io.cloudreactor.tasksymphony.invoker.ApiException;
 import io.cloudreactor.tasksymphony.invoker.Configuration;
-import io.cloudreactor.tasksymphony.invoker.auth.*;
-import io.cloudreactor.tasksymphony.invoker.models.*;
+
 
 public class Example {
     public static void main(String[] args) {
@@ -91,18 +92,19 @@ picked up correctly.
     // PROC_WRAPPER_STATUS_UPDATE_SOCKET_PORT
     // PROC_WRAPPER_STATUS_UPDATE_SOCKET_BIND_PORT
     // to determine configuration. These environment variables are typically passed
-    // to the proc_wrapper.py script which then passes them on to your process.    
-    TaskStatusUpdater statusUpdater = new TaskStatusUpdater()
-    
-    statusUpdater.sendUpdate(
-        1L,    // success count
-        2L,    // error count
-        null,  // skipped count
-        null,  // expected count 
-        "running", // last status message
-        null); // extra props    
-        
-    statusUpdater.close()
+    // to the proc_wrapper.py script which then passes them on to your process.
+    //
+    // This uses a try-with-resources statement that will close the updater
+    // whether or not the block threw an exception.
+    try (TaskStatusUpdater statusUpdater = new TaskStatusUpdater()) { 
+        statusUpdater.sendUpdate(
+            1L,    // success count
+            2L,    // error count
+            null,  // skipped count
+            null,  // expected count 
+            "running", // last status message
+            null); // extra props
+    } 
 
 ## License
 
