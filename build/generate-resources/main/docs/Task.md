@@ -30,7 +30,7 @@ Name | Type | Description | Notes
 **projectUrl** | **String** |  |  [optional]
 **logQuery** | **String** |  |  [optional]
 **logsUrl** | **String** |  |  [readonly]
-**links** | [**Link**](Link.md) |  |  [readonly]
+**links** | [**List&lt;Link&gt;**](Link.md) |  | 
 **runEnvironment** | [**NameAndUuid**](NameAndUuid.md) |  |  [optional]
 **executionMethodCapability** | [**ExecutionMethodCapability**](ExecutionMethodCapability.md) |  |  [readonly]
 **alertMethods** | [**List&lt;NameAndUuid&gt;**](NameAndUuid.md) |  |  [readonly]

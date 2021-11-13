@@ -154,7 +154,7 @@ public class PatchedTask {
   private JsonNullable<String> logsUrl = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_LINKS = "links";
-  private JsonNullable<Link> links = JsonNullable.<Link>undefined();
+  private List<Link> links = null;
 
   public static final String JSON_PROPERTY_RUN_ENVIRONMENT = "run_environment";
   private JsonNullable<NameAndUuid> runEnvironment = JsonNullable.<NameAndUuid>undefined();
@@ -854,34 +854,39 @@ public class PatchedTask {
 
 
 
+  public PatchedTask links(List<Link> links) {
+    
+    this.links = links;
+    return this;
+  }
+
+  public PatchedTask addLinksItem(Link linksItem) {
+    if (this.links == null) {
+      this.links = new ArrayList<>();
+    }
+    this.links.add(linksItem);
+    return this;
+  }
+
    /**
    * Get links
    * @return links
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonIgnore
-
-  public Link getLinks() {
-    
-    if (links == null) {
-      links = JsonNullable.<Link>undefined();
-    }
-    return links.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_LINKS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Link> getLinks_JsonNullable() {
+  public List<Link> getLinks() {
     return links;
   }
-  
+
+
   @JsonProperty(JSON_PROPERTY_LINKS)
-  private void setLinks_JsonNullable(JsonNullable<Link> links) {
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLinks(List<Link> links) {
     this.links = links;
   }
-
 
 
   public PatchedTask runEnvironment(NameAndUuid runEnvironment) {
@@ -1270,7 +1275,7 @@ public class PatchedTask {
         Objects.equals(this.projectUrl, patchedTask.projectUrl) &&
         Objects.equals(this.logQuery, patchedTask.logQuery) &&
         equalsNullable(this.logsUrl, patchedTask.logsUrl) &&
-        equalsNullable(this.links, patchedTask.links) &&
+        Objects.equals(this.links, patchedTask.links) &&
         equalsNullable(this.runEnvironment, patchedTask.runEnvironment) &&
         equalsNullable(this.executionMethodCapability, patchedTask.executionMethodCapability) &&
         Objects.equals(this.alertMethods, patchedTask.alertMethods) &&
@@ -1292,7 +1297,7 @@ public class PatchedTask {
 
   @Override
   public int hashCode() {
-    return Objects.hash(url, uuid, name, description, dashboardUrl, hashCodeNullable(infrastructureWebsiteUrl), hashCodeNullable(maxManualStartDelayBeforeAlertSeconds), hashCodeNullable(maxManualStartDelayBeforeAbandonmentSeconds), hashCodeNullable(heartbeatIntervalSeconds), hashCodeNullable(maxHeartbeatLatenessBeforeAlertSeconds), hashCodeNullable(maxHeartbeatLatenessBeforeAbandonmentSeconds), schedule, hashCodeNullable(scheduledInstanceCount), isService, hashCodeNullable(serviceInstanceCount), hashCodeNullable(minServiceInstanceCount), hashCodeNullable(maxConcurrency), hashCodeNullable(maxAgeSeconds), defaultMaxRetries, projectUrl, logQuery, hashCodeNullable(logsUrl), hashCodeNullable(links), hashCodeNullable(runEnvironment), hashCodeNullable(executionMethodCapability), alertMethods, hashCodeNullable(otherMetadata), hashCodeNullable(latestTaskExecution), hashCodeNullable(currentServiceInfo), createdByUser, hashCodeNullable(createdByGroup), hashCodeNullable(wasAutoCreated), passive, enabled, createdAt, updatedAt);
+    return Objects.hash(url, uuid, name, description, dashboardUrl, hashCodeNullable(infrastructureWebsiteUrl), hashCodeNullable(maxManualStartDelayBeforeAlertSeconds), hashCodeNullable(maxManualStartDelayBeforeAbandonmentSeconds), hashCodeNullable(heartbeatIntervalSeconds), hashCodeNullable(maxHeartbeatLatenessBeforeAlertSeconds), hashCodeNullable(maxHeartbeatLatenessBeforeAbandonmentSeconds), schedule, hashCodeNullable(scheduledInstanceCount), isService, hashCodeNullable(serviceInstanceCount), hashCodeNullable(minServiceInstanceCount), hashCodeNullable(maxConcurrency), hashCodeNullable(maxAgeSeconds), defaultMaxRetries, projectUrl, logQuery, hashCodeNullable(logsUrl), links, hashCodeNullable(runEnvironment), hashCodeNullable(executionMethodCapability), alertMethods, hashCodeNullable(otherMetadata), hashCodeNullable(latestTaskExecution), hashCodeNullable(currentServiceInfo), createdByUser, hashCodeNullable(createdByGroup), hashCodeNullable(wasAutoCreated), passive, enabled, createdAt, updatedAt);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {

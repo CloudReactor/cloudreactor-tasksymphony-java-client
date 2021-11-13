@@ -154,7 +154,7 @@ public class Task {
   private String logsUrl;
 
   public static final String JSON_PROPERTY_LINKS = "links";
-  private Link links;
+  private List<Link> links = new ArrayList<>();
 
   public static final String JSON_PROPERTY_RUN_ENVIRONMENT = "run_environment";
   private JsonNullable<NameAndUuid> runEnvironment = JsonNullable.<NameAndUuid>undefined();
@@ -826,20 +826,36 @@ public class Task {
 
 
 
+  public Task links(List<Link> links) {
+    
+    this.links = links;
+    return this;
+  }
+
+  public Task addLinksItem(Link linksItem) {
+    this.links.add(linksItem);
+    return this;
+  }
+
    /**
    * Get links
    * @return links
   **/
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   @ApiModelProperty(required = true, value = "")
   @JsonProperty(JSON_PROPERTY_LINKS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public Link getLinks() {
+  public List<Link> getLinks() {
     return links;
   }
 
 
+  @JsonProperty(JSON_PROPERTY_LINKS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setLinks(List<Link> links) {
+    this.links = links;
+  }
 
 
   public Task runEnvironment(NameAndUuid runEnvironment) {
