@@ -20,7 +20,7 @@ which is the parent process.
 See the [CloudReactor landing page](https://www.cloudreactor.io/) to see the
 benefits of monitoring and managing your tasks with CloudReactor.
 
-## API Client
+## API client
 
 The API client allows your program to control various entities in CloudReactor,
 most notable Tasks and Workflows. To start an existing Task, create a 
@@ -108,10 +108,10 @@ picked up correctly.
             null); // extra props
     } 
 
-## More Documentation
+## More documentation
 
-* [Javadoc](https://javadoc.cloudreactor.io/)
-* [More documentation for each entity](https://github.com/CloudReactor/cloudreactor-tasksymphony-java-client/tree/master/build/generate-resources/main/docs)
+* [Javadocs](https://javadoc.cloudreactor.io/)
+* [Entities](https://github.com/CloudReactor/cloudreactor-tasksymphony-java-client/tree/master/build/generate-resources/main/docs)
 
 ## License
 
