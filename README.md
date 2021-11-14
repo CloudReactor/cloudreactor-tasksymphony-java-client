@@ -1,6 +1,9 @@
 # CloudReactor Java API Client and Status Updater
 
+
+![Maven Central](https://img.shields.io/maven-central/v/io.cloudreactor/tasksymphony)
 ![Java CI](https://github.com/CloudReactor/cloudreactor-tasksymphony-wrapper-io-java/workflows/Java%20CI/badge.svg?branch=master)
+![GitHub](https://img.shields.io/github/license/CloudReactor/cloudreactor-tasksymphony-java-client)
 
 ## Overview
 
@@ -31,7 +34,6 @@ import io.cloudreactor.tasksymphony.model.*;
 import io.cloudreactor.tasksymphony.invoker.ApiClient;
 import io.cloudreactor.tasksymphony.invoker.ApiException;
 import io.cloudreactor.tasksymphony.invoker.Configuration;
-
 
 public class Example {
     public static void main(String[] args) {
