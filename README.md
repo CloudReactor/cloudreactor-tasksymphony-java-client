@@ -108,6 +108,11 @@ picked up correctly.
             null); // extra props
     } 
 
+## More Documentation
+
+* [Javadoc](https://javadoc.cloudreactor.io/)
+* [More documentation for each entity](https://github.com/CloudReactor/cloudreactor-tasksymphony-java-client/tree/master/build/generate-resources/main/docs)
+
 ## License
 
 This project is covered by the [BSD 2-clause license](https://opensource.org/licenses/BSD-2-Clause).
