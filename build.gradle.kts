@@ -1,3 +1,5 @@
+import java.util.Base64
+
 import org.gradle.external.javadoc.CoreJavadocOptions
 
 import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
@@ -5,6 +7,7 @@ import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
 plugins {
     `java-library`
     id("org.openapi.generator") version "5.3.0"
+    signing
     `maven-publish`
     id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
     idea
@@ -12,7 +15,7 @@ plugins {
 val GROUP = "io.cloudreactor"
 val ARTIFACT = "tasksymphony"
 val PACKAGE = GROUP + "." + ARTIFACT
-val VERSION = "0.2.0"
+val VERSION = "0.2.1"
 
 group = PACKAGE
 version = VERSION
@@ -109,6 +112,12 @@ tasks.withType<Javadoc> {
     }
 }
 
+fun base64Decode(prop: String): String? {
+    return project.findProperty(prop)?.let {
+        String(Base64.getDecoder().decode(it.toString())).trim()
+    }
+}
+
 nexusPublishing {
     repositories {
         sonatype {
@@ -152,4 +161,10 @@ publishing {
             }
         }
     }
+}
+
+signing {
+    useInMemoryPgpKeys(base64Decode("signingKeyBase64"), project.findProperty("signingPassword").let { it.toString().trim() } )
+    //sign(*publishing.publications.toTypedArray())
+    sign(publishing.publications["maven"])
 }

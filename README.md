@@ -110,8 +110,9 @@ picked up correctly.
 
 ## More documentation
 
-* [Javadocs](https://javadoc.cloudreactor.io/)
-* [Entities](https://github.com/CloudReactor/cloudreactor-tasksymphony-java-client/tree/master/build/generate-resources/main/docs)
+* [Javadocs](https://javadoc.cloudreactor.io/) for this library
+* [Model documentation](https://github.com/CloudReactor/cloudreactor-tasksymphony-java-client/tree/master/build/generate-resources/main/docs) in this library
+* [CloudReactor API documentation](https://apidocs.cloudreactor.io/)
 
 ## License
 
