@@ -15,7 +15,7 @@ plugins {
 val GROUP = "io.cloudreactor"
 val ARTIFACT = "tasksymphony"
 val PACKAGE = GROUP + "." + ARTIFACT
-val VERSION = "0.2.1"
+val VERSION = "0.2.2"
 
 group = PACKAGE
 version = VERSION
