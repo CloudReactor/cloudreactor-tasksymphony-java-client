@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 **name** | **String** |  | 
 **linkUrlTemplate** | **String** |  | 
 **linkUrl** | **String** |  |  [readonly]
-**iconUrl** | **String** |  |  [readonly]
-**description** | **String** |  | 
+**iconUrl** | **String** |  | 
+**description** | **String** |  |  [optional]
 **rank** | **Integer** |  | 
 
 

@@ -116,7 +116,7 @@ public class Workflow {
   private OffsetDateTime updatedAt;
 
   public static final String JSON_PROPERTY_ALERT_METHODS = "alert_methods";
-  private List<NameAndUuid> alertMethods = new ArrayList<>();
+  private List<NameAndUuid> alertMethods = null;
 
   public static final String JSON_PROPERTY_WORKFLOW_TASK_INSTANCES = "workflow_task_instances";
   private List<WorkflowTaskInstance> workflowTaskInstances = new ArrayList<>();
@@ -510,20 +510,39 @@ public class Workflow {
 
 
 
+  public Workflow alertMethods(List<NameAndUuid> alertMethods) {
+    
+    this.alertMethods = alertMethods;
+    return this;
+  }
+
+  public Workflow addAlertMethodsItem(NameAndUuid alertMethodsItem) {
+    if (this.alertMethods == null) {
+      this.alertMethods = new ArrayList<>();
+    }
+    this.alertMethods.add(alertMethodsItem);
+    return this;
+  }
+
    /**
    * Get alertMethods
    * @return alertMethods
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_ALERT_METHODS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public List<NameAndUuid> getAlertMethods() {
     return alertMethods;
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ALERT_METHODS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAlertMethods(List<NameAndUuid> alertMethods) {
+    this.alertMethods = alertMethods;
+  }
 
 
    /**

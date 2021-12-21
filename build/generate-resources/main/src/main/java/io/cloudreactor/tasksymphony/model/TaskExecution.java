@@ -416,10 +416,10 @@ public class TaskExecution {
    * Get task
    * @return task
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_TASK)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public NameAndUuid getTask() {
     return task;
@@ -427,7 +427,7 @@ public class TaskExecution {
 
 
   @JsonProperty(JSON_PROPERTY_TASK)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTask(NameAndUuid task) {
     this.task = task;
   }

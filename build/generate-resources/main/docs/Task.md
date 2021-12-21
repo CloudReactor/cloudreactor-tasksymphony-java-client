@@ -30,10 +30,10 @@ Name | Type | Description | Notes
 **projectUrl** | **String** |  |  [optional]
 **logQuery** | **String** |  |  [optional]
 **logsUrl** | **String** |  |  [readonly]
-**links** | [**List&lt;Link&gt;**](Link.md) |  | 
+**links** | [**List&lt;Link&gt;**](Link.md) |  |  [optional]
 **runEnvironment** | [**NameAndUuid**](NameAndUuid.md) |  |  [optional]
 **executionMethodCapability** | [**ExecutionMethodCapability**](ExecutionMethodCapability.md) |  |  [readonly]
-**alertMethods** | [**List&lt;NameAndUuid&gt;**](NameAndUuid.md) |  |  [readonly]
+**alertMethods** | [**List&lt;NameAndUuid&gt;**](NameAndUuid.md) |  |  [optional]
 **otherMetadata** | **Map&lt;String, Object&gt;** |  |  [optional]
 **latestTaskExecution** | [**TaskExecution**](TaskExecution.md) |  |  [readonly]
 **currentServiceInfo** | [**CurrentServiceInfo**](CurrentServiceInfo.md) |  |  [readonly]

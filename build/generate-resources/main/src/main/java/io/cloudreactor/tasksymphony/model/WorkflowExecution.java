@@ -130,7 +130,7 @@ public class WorkflowExecution {
   private Integer timedOutAttempts;
 
   public static final String JSON_PROPERTY_WORKFLOW_SNAPSHOT = "workflow_snapshot";
-  private JsonNullable<Map<String, Object>> workflowSnapshot = JsonNullable.<Map<String, Object>>undefined();
+  private Map<String, Object> workflowSnapshot = new HashMap<>();
 
   public static final String JSON_PROPERTY_WORKFLOW_TASK_INSTANCE_EXECUTIONS = "workflow_task_instance_executions";
   private List<WorkflowTaskInstanceExecution> workflowTaskInstanceExecutions = new ArrayList<>();
@@ -647,51 +647,20 @@ public class WorkflowExecution {
   }
 
 
-  public WorkflowExecution workflowSnapshot(Map<String, Object> workflowSnapshot) {
-    this.workflowSnapshot = JsonNullable.<Map<String, Object>>of(workflowSnapshot);
-    
-    return this;
-  }
-
-  public WorkflowExecution putWorkflowSnapshotItem(String key, Object workflowSnapshotItem) {
-    if (this.workflowSnapshot == null || !this.workflowSnapshot.isPresent()) {
-      this.workflowSnapshot = JsonNullable.<Map<String, Object>>of(new HashMap<>());
-    }
-    try {
-      this.workflowSnapshot.get().put(key, workflowSnapshotItem);
-    } catch (java.util.NoSuchElementException e) {
-      // this can never happen, as we make sure above that the value is present
-    }
-    return this;
-  }
-
    /**
    * Get workflowSnapshot
    * @return workflowSnapshot
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-  @JsonIgnore
+  @javax.annotation.Nonnull
+  @ApiModelProperty(required = true, value = "")
+  @JsonProperty(JSON_PROPERTY_WORKFLOW_SNAPSHOT)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.ALWAYS)
 
   public Map<String, Object> getWorkflowSnapshot() {
-        return workflowSnapshot.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_WORKFLOW_SNAPSHOT)
-  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<Map<String, Object>> getWorkflowSnapshot_JsonNullable() {
     return workflowSnapshot;
   }
-  
-  @JsonProperty(JSON_PROPERTY_WORKFLOW_SNAPSHOT)
-  public void setWorkflowSnapshot_JsonNullable(JsonNullable<Map<String, Object>> workflowSnapshot) {
-    this.workflowSnapshot = workflowSnapshot;
-  }
 
-  public void setWorkflowSnapshot(Map<String, Object> workflowSnapshot) {
-    this.workflowSnapshot = JsonNullable.<Map<String, Object>>of(workflowSnapshot);
-  }
+
 
 
    /**
@@ -786,7 +755,7 @@ public class WorkflowExecution {
         equalsNullable(this.killErrorCode, workflowExecution.killErrorCode) &&
         Objects.equals(this.failedAttempts, workflowExecution.failedAttempts) &&
         Objects.equals(this.timedOutAttempts, workflowExecution.timedOutAttempts) &&
-        equalsNullable(this.workflowSnapshot, workflowExecution.workflowSnapshot) &&
+        Objects.equals(this.workflowSnapshot, workflowExecution.workflowSnapshot) &&
         Objects.equals(this.workflowTaskInstanceExecutions, workflowExecution.workflowTaskInstanceExecutions) &&
         Objects.equals(this.workflowTransitionEvaluations, workflowExecution.workflowTransitionEvaluations) &&
         Objects.equals(this.createdAt, workflowExecution.createdAt) &&
@@ -799,7 +768,7 @@ public class WorkflowExecution {
 
   @Override
   public int hashCode() {
-    return Objects.hash(url, uuid, dashboardUrl, workflow, status, runReason, startedAt, startedBy, hashCodeNullable(finishedAt), hashCodeNullable(lastHeartbeatAt), hashCodeNullable(stopReason), hashCodeNullable(markedDoneAt), markedDoneBy, hashCodeNullable(killStartedAt), killedBy, hashCodeNullable(killFinishedAt), hashCodeNullable(killErrorCode), failedAttempts, timedOutAttempts, hashCodeNullable(workflowSnapshot), workflowTaskInstanceExecutions, workflowTransitionEvaluations, createdAt, updatedAt);
+    return Objects.hash(url, uuid, dashboardUrl, workflow, status, runReason, startedAt, startedBy, hashCodeNullable(finishedAt), hashCodeNullable(lastHeartbeatAt), hashCodeNullable(stopReason), hashCodeNullable(markedDoneAt), markedDoneBy, hashCodeNullable(killStartedAt), killedBy, hashCodeNullable(killFinishedAt), hashCodeNullable(killErrorCode), failedAttempts, timedOutAttempts, workflowSnapshot, workflowTaskInstanceExecutions, workflowTransitionEvaluations, createdAt, updatedAt);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {

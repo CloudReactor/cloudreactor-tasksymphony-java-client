@@ -154,7 +154,7 @@ public class Task {
   private String logsUrl;
 
   public static final String JSON_PROPERTY_LINKS = "links";
-  private List<Link> links = new ArrayList<>();
+  private List<Link> links = null;
 
   public static final String JSON_PROPERTY_RUN_ENVIRONMENT = "run_environment";
   private JsonNullable<NameAndUuid> runEnvironment = JsonNullable.<NameAndUuid>undefined();
@@ -163,7 +163,7 @@ public class Task {
   private ExecutionMethodCapability executionMethodCapability;
 
   public static final String JSON_PROPERTY_ALERT_METHODS = "alert_methods";
-  private List<NameAndUuid> alertMethods = new ArrayList<>();
+  private List<NameAndUuid> alertMethods = null;
 
   public static final String JSON_PROPERTY_OTHER_METADATA = "other_metadata";
   private JsonNullable<Map<String, Object>> otherMetadata = JsonNullable.<Map<String, Object>>undefined();
@@ -833,6 +833,9 @@ public class Task {
   }
 
   public Task addLinksItem(Link linksItem) {
+    if (this.links == null) {
+      this.links = new ArrayList<>();
+    }
     this.links.add(linksItem);
     return this;
   }
@@ -841,10 +844,10 @@ public class Task {
    * Get links
    * @return links
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_LINKS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public List<Link> getLinks() {
     return links;
@@ -852,7 +855,7 @@ public class Task {
 
 
   @JsonProperty(JSON_PROPERTY_LINKS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLinks(List<Link> links) {
     this.links = links;
   }
@@ -909,20 +912,39 @@ public class Task {
 
 
 
+  public Task alertMethods(List<NameAndUuid> alertMethods) {
+    
+    this.alertMethods = alertMethods;
+    return this;
+  }
+
+  public Task addAlertMethodsItem(NameAndUuid alertMethodsItem) {
+    if (this.alertMethods == null) {
+      this.alertMethods = new ArrayList<>();
+    }
+    this.alertMethods.add(alertMethodsItem);
+    return this;
+  }
+
    /**
    * Get alertMethods
    * @return alertMethods
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_ALERT_METHODS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public List<NameAndUuid> getAlertMethods() {
     return alertMethods;
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ALERT_METHODS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAlertMethods(List<NameAndUuid> alertMethods) {
+    this.alertMethods = alertMethods;
+  }
 
 
   public Task otherMetadata(Map<String, Object> otherMetadata) {

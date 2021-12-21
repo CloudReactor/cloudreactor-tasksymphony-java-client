@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 **enabled** | **Boolean** |  |  [optional]
 **createdAt** | **OffsetDateTime** |  |  [optional] [readonly]
 **updatedAt** | **OffsetDateTime** |  |  [optional] [readonly]
-**alertMethods** | [**List&lt;NameAndUuid&gt;**](NameAndUuid.md) |  |  [optional] [readonly]
+**alertMethods** | [**List&lt;NameAndUuid&gt;**](NameAndUuid.md) |  |  [optional]
 **workflowTaskInstances** | [**List&lt;WorkflowTaskInstance&gt;**](WorkflowTaskInstance.md) |  |  [optional] [readonly]
 **workflowTransitions** | [**List&lt;WorkflowTransition&gt;**](WorkflowTransition.md) |  |  [optional] [readonly]
 

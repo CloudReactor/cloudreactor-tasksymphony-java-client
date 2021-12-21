@@ -78,12 +78,6 @@ public class WorkflowTransitionEvaluation {
 
 
 
-  public WorkflowTransitionEvaluation result(Boolean result) {
-    
-    this.result = result;
-    return this;
-  }
-
    /**
    * Get result
    * @return result
@@ -98,11 +92,6 @@ public class WorkflowTransitionEvaluation {
   }
 
 
-  @JsonProperty(JSON_PROPERTY_RESULT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setResult(Boolean result) {
-    this.result = result;
-  }
 
 
    /**

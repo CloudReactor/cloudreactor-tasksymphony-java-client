@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 **killErrorCode** | **Integer** |  |  [optional]
 **failedAttempts** | **Integer** |  |  [optional]
 **timedOutAttempts** | **Integer** |  |  [optional]
-**workflowSnapshot** | **Map&lt;String, Object&gt;** |  |  [optional]
+**workflowSnapshot** | **Map&lt;String, Object&gt;** |  |  [optional] [readonly]
 **workflowTaskInstanceExecutions** | [**List&lt;WorkflowTaskInstanceExecution&gt;**](WorkflowTaskInstanceExecution.md) |  |  [optional] [readonly]
 **workflowTransitionEvaluations** | [**List&lt;WorkflowTransitionEvaluation&gt;**](WorkflowTransitionEvaluation.md) |  |  [optional] [readonly]
 **createdAt** | **OffsetDateTime** |  |  [optional] [readonly]

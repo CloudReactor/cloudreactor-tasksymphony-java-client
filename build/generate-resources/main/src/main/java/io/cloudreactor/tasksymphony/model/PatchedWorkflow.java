@@ -524,6 +524,20 @@ public class PatchedWorkflow {
 
 
 
+  public PatchedWorkflow alertMethods(List<NameAndUuid> alertMethods) {
+    
+    this.alertMethods = alertMethods;
+    return this;
+  }
+
+  public PatchedWorkflow addAlertMethodsItem(NameAndUuid alertMethodsItem) {
+    if (this.alertMethods == null) {
+      this.alertMethods = new ArrayList<>();
+    }
+    this.alertMethods.add(alertMethodsItem);
+    return this;
+  }
+
    /**
    * Get alertMethods
    * @return alertMethods
@@ -538,6 +552,11 @@ public class PatchedWorkflow {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ALERT_METHODS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAlertMethods(List<NameAndUuid> alertMethods) {
+    this.alertMethods = alertMethods;
+  }
 
 
    /**

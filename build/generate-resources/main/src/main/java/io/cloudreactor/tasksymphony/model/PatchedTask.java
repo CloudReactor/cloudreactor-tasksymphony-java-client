@@ -954,6 +954,20 @@ public class PatchedTask {
 
 
 
+  public PatchedTask alertMethods(List<NameAndUuid> alertMethods) {
+    
+    this.alertMethods = alertMethods;
+    return this;
+  }
+
+  public PatchedTask addAlertMethodsItem(NameAndUuid alertMethodsItem) {
+    if (this.alertMethods == null) {
+      this.alertMethods = new ArrayList<>();
+    }
+    this.alertMethods.add(alertMethodsItem);
+    return this;
+  }
+
    /**
    * Get alertMethods
    * @return alertMethods
@@ -968,6 +982,11 @@ public class PatchedTask {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ALERT_METHODS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAlertMethods(List<NameAndUuid> alertMethods) {
+    this.alertMethods = alertMethods;
+  }
 
 
   public PatchedTask otherMetadata(Map<String, Object> otherMetadata) {

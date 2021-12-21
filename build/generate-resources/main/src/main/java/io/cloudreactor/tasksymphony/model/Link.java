@@ -161,6 +161,12 @@ public class Link {
 
 
 
+  public Link iconUrl(String iconUrl) {
+    
+    this.iconUrl = iconUrl;
+    return this;
+  }
+
    /**
    * Get iconUrl
    * @return iconUrl
@@ -175,6 +181,11 @@ public class Link {
   }
 
 
+  @JsonProperty(JSON_PROPERTY_ICON_URL)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setIconUrl(String iconUrl) {
+    this.iconUrl = iconUrl;
+  }
 
 
   public Link description(String description) {
@@ -187,10 +198,10 @@ public class Link {
    * Get description
    * @return description
   **/
-  @javax.annotation.Nonnull
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
   @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getDescription() {
     return description;
@@ -198,7 +209,7 @@ public class Link {
 
 
   @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDescription(String description) {
     this.description = description;
   }

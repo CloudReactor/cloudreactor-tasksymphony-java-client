@@ -33,7 +33,7 @@ Name | Type | Description | Notes
 **links** | [**List&lt;Link&gt;**](Link.md) |  |  [optional]
 **runEnvironment** | [**NameAndUuid**](NameAndUuid.md) |  |  [optional]
 **executionMethodCapability** | [**ExecutionMethodCapability**](ExecutionMethodCapability.md) |  |  [optional] [readonly]
-**alertMethods** | [**List&lt;NameAndUuid&gt;**](NameAndUuid.md) |  |  [optional] [readonly]
+**alertMethods** | [**List&lt;NameAndUuid&gt;**](NameAndUuid.md) |  |  [optional]
 **otherMetadata** | **Map&lt;String, Object&gt;** |  |  [optional]
 **latestTaskExecution** | [**TaskExecution**](TaskExecution.md) |  |  [optional] [readonly]
 **currentServiceInfo** | [**CurrentServiceInfo**](CurrentServiceInfo.md) |  |  [optional] [readonly]

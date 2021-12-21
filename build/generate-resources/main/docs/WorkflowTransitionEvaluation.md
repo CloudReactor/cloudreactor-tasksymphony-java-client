@@ -9,7 +9,7 @@ A WorkflowTransitionEvaluation is a saved evaluation of the conditions in a Work
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **uuid** | **UUID** |  |  [readonly]
-**result** | **Boolean** |  | 
+**result** | **Boolean** |  |  [readonly]
 **workflowTransition** | [**NameAndUuid**](NameAndUuid.md) |  |  [readonly]
 **workflowExecution** | [**NameAndUuid**](NameAndUuid.md) |  |  [readonly]
 **fromWorkflowTaskInstanceExecution** | **String** |  |  [readonly]
