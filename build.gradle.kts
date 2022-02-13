@@ -110,6 +110,10 @@ tasks.withType<Javadoc> {
         this as CoreJavadocOptions
         this.addStringOption("Xdoclint:-missing")
     }
+
+    doLast {
+        println("Done Javadoc")
+    }
 }
 
 fun base64Decode(prop: String): String? {
