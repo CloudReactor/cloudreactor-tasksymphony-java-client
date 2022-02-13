@@ -104,12 +104,33 @@ tasks.withType<Test> {
     }
 }
 
+tasks.register<Delete>("clearDocs") {
+    this.delete("docs")
+}
+
+// Preserver CNAME in docs directory for GitHub Pages
+tasks.register<Copy>("copyJavaDocCNAME") {
+    this.from(File("JavaDoc-CNAME"))
+    this.destinationDir = File("docs")
+    this.rename { "CNAME" }
+}
+
+// Prepare to publish to GitHub Pages in docs directory
+tasks.register<Copy>("copyDocs") {
+    this.from(File("build/docs/javadoc"))
+    this.destinationDir = File("docs")
+    this.dependsOn(tasks.named("clearDocs"))
+    this.finalizedBy(tasks.named("copyJavaDocCNAME"))
+}
+
 tasks.withType<Javadoc> {
-    this.setDestinationDir(File("docs"))
+    this.title = "CloudReactor API Client $VERSION"
     this.options {
         this as CoreJavadocOptions
         this.addStringOption("Xdoclint:-missing")
     }
+
+    this.finalizedBy(tasks.named("copyDocs"))
 }
 
 fun base64Decode(prop: String): String? {
