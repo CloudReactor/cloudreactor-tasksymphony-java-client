@@ -32,6 +32,7 @@ object LibraryVersions {
     const val jakarta_annotation_version = "1.3.5"
     const val httpclient_version = "4.5.13"
     const val junit_version = "4.13.1"
+    const val log4j2_version = "2.15.0"
 }
 
 dependencies {
@@ -51,9 +52,9 @@ dependencies {
     implementation("jakarta.annotation", "jakarta.annotation-api", LibraryVersions.jakarta_annotation_version)
     
     testImplementation("junit", "junit", LibraryVersions.junit_version)
-    testImplementation("org.apache.logging.log4j","log4j-core", "2.13.3")
-    testImplementation("org.apache.logging.log4j","log4j-api", "2.13.3")
-    testImplementation("org.apache.logging.log4j", "log4j-slf4j-impl", "2.13.3")
+    testImplementation("org.apache.logging.log4j","log4j-core", LibraryVersions.log4j2_version)
+    testImplementation("org.apache.logging.log4j","log4j-api", LibraryVersions.log4j2_version)
+    testImplementation("org.apache.logging.log4j", "log4j-slf4j-impl", LibraryVersions.log4j2_version)
 
     // Needed to read log4j2 configuration in YML
     testImplementation("com.fasterxml.jackson.dataformat", "jackson-dataformat-yaml", LibraryVersions.jackson_version)
