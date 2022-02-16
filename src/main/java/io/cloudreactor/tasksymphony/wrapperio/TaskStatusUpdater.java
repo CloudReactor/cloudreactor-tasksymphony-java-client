@@ -159,8 +159,7 @@ public class TaskStatusUpdater implements AutoCloseable {
     final Long skippedCount, final Long expectedCount,
     final String lastStatusMessage, final Map<String, Object> extraProps,
     Long maxRetries, Long timeoutMillis, long backoffDurationMillis)
-    throws MessageConversionException, MaxRetriesExceededException,
-      TimeoutException, InterruptedException {
+    throws UpdateException, TimeoutException, InterruptedException {
 
     if (!_isEnabled) {
       if (logger.isTraceEnabled()) {
@@ -252,8 +251,7 @@ public class TaskStatusUpdater implements AutoCloseable {
   public boolean sendUpdate(final Long successCount, final Long errorCount,
     final Long skippedCount, final Long expectedCount,
     final String lastStatusMessage, final Map<String, Object> extraProps)
-    throws MessageConversionException, MaxRetriesExceededException,
-      TimeoutException, InterruptedException {
+    throws UpdateException, TimeoutException, InterruptedException {
     return sendUpdate(successCount, errorCount, skippedCount, expectedCount,
       lastStatusMessage, extraProps, null, null, -1L);
   }
@@ -300,7 +298,7 @@ public class TaskStatusUpdater implements AutoCloseable {
     final String lastStatusMessage, final Map<String, Object> extraProps)
     throws MessageConversionException {
 
-    final Map<String, Object> props = new HashMap<String, Object>(
+    final Map<String, Object> props = new HashMap<>(
       ((extraProps == null) ? 0 : extraProps.size()) + 7);
 
     if (successCount != null) {

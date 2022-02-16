@@ -2,13 +2,13 @@ package io.cloudreactor.tasksymphony.wrapperio;
 
 import java.util.Map;
 
-/** An exception ndicating that update properties could not be serialized
+/** An exception indicating that update properties could not be serialized
  * properly as JSON.
  *
  *  @author <a href="mailto:jtsay@cloudreactor.io">Jeff Tsay</a>
  *  @since 0.1.0
  */
-public class MessageConversionException extends Exception {
+public class MessageConversionException extends UpdateException {
   MessageConversionException(final Exception cause, final Map<String, Object> props) {
     super("Properties could not be converted to JSON", cause);
     this.props = props;

@@ -332,8 +332,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;maxRetries,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;timeoutMillis,
  long&nbsp;backoffDurationMillis)</span>
-                   throws <span class="exceptions"><a href="MessageConversionException.html" title="class in io.cloudreactor.tasksymphony.wrapperio">MessageConversionException</a>,
-<a href="MaxRetriesExceededException.html" title="class in io.cloudreactor.tasksymphony.wrapperio">MaxRetriesExceededException</a>,
+                   throws <span class="exceptions"><a href="UpdateException.html" title="class in io.cloudreactor.tasksymphony.wrapperio">UpdateException</a>,
 <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/TimeoutException.html" title="class or interface in java.util.concurrent" class="external-link">TimeoutException</a>,
 <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
 <div class="block">Send an update message to the process wrapper script, if status updates are enabled.
@@ -371,6 +370,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/TimeoutException.html" title="class or interface in java.util.concurrent" class="external-link">TimeoutException</a></code> - if the operation timed out</dd>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code> - if the current thread is interrupted while
  waiting after an IOException occurred</dd>
+<dd><code><a href="UpdateException.html" title="class in io.cloudreactor.tasksymphony.wrapperio">UpdateException</a></code></dd>
 <dt>Since:</dt>
 <dd>0.1.0</dd>
 </dl>
@@ -385,8 +385,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;expectedCount,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;lastStatusMessage,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Map.html" title="class or interface in java.util" class="external-link">Map</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&gt;&nbsp;extraProps)</span>
-                   throws <span class="exceptions"><a href="MessageConversionException.html" title="class in io.cloudreactor.tasksymphony.wrapperio">MessageConversionException</a>,
-<a href="MaxRetriesExceededException.html" title="class in io.cloudreactor.tasksymphony.wrapperio">MaxRetriesExceededException</a>,
+                   throws <span class="exceptions"><a href="UpdateException.html" title="class in io.cloudreactor.tasksymphony.wrapperio">UpdateException</a>,
 <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/TimeoutException.html" title="class or interface in java.util.concurrent" class="external-link">TimeoutException</a>,
 <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
 <div class="block">Send an update message to the process wrapper script, using the default values
@@ -410,6 +409,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/TimeoutException.html" title="class or interface in java.util.concurrent" class="external-link">TimeoutException</a></code> - if the operation timed out</dd>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code> - if the current thread is interrupted while
  waiting after an IOException occurred</dd>
+<dd><code><a href="UpdateException.html" title="class in io.cloudreactor.tasksymphony.wrapperio">UpdateException</a></code></dd>
 <dt>Since:</dt>
 <dd>0.1.0</dd>
 </dl>
