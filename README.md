@@ -99,7 +99,7 @@ picked up correctly.
     // This uses a try-with-resources statement that will close the updater
     // whether or not the block threw an exception.
     try (TaskStatusUpdater statusUpdater = new TaskStatusUpdater()) { 
-        statusUpdater.sendUpdate(
+        statusUpdater.sendUpdateAndIgnoreError(
             1L,    // success count
             2L,    // error count
             null,  // skipped count
