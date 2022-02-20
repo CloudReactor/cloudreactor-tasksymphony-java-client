@@ -256,6 +256,39 @@ public class TaskStatusUpdater implements AutoCloseable {
       lastStatusMessage, extraProps, null, null, -1L);
   }
 
+  /** Send an update message to the process wrapper script, using the default values
+   *  for retries, timeout, and backoff duration. Swallow the exceptions that could
+   *  result from failing to send the update, retuning false instead.
+   * @param successCount The number of successful items. If null, no value will be sent.
+   * @param errorCount The number of unsuccessful items. If null, no value will be sent.
+   * @param skippedCount The number of skipped items. If null, no value will be sent.
+   * @param expectedCount The number of expected items. If null, no value will be sent.
+   * @param lastStatusMessage A message indicating the last status. If null, no value will be sent.
+   * @param extraProps A map containing string keys mapped to additional properties to send
+   * Each property value must be something serializable in JSON, including lists and
+   * hashes. If null, no additional properties will be sent.
+   * @return true if the update succeeded, false if status updates are disabled or if the
+   * update failed.
+   * @since 0.4.0
+   */
+  public boolean sendUpdateAndIgnoreError(final Long successCount, final Long errorCount,
+    final Long skippedCount, final Long expectedCount,
+    final String lastStatusMessage, final Map<String, Object> extraProps) {
+    try {
+      return sendUpdate(successCount, errorCount, skippedCount, expectedCount,
+              lastStatusMessage, extraProps, null, null, -1L);
+    } catch (UpdateException uex) {
+      logger.info("Ignoring update exception", uex);
+      return false;
+    } catch (TimeoutException tex) {
+      logger.info("Ignoring timeout exception", tex);
+      return false;
+    } catch (InterruptedException iex) {
+      logger.info("Ignoring interrupted exception", iex);
+      return false;
+    }
+  }
+
   /** Return true if communication is enabled.
    *  @return true if communication is enabled
    *  @since 0.1.0

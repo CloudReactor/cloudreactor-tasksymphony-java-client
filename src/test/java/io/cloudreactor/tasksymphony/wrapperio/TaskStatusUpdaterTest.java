@@ -9,6 +9,9 @@ import org.slf4j.LoggerFactory;
 
 import org.junit.Test;
 
+import java.util.Map;
+import java.util.concurrent.TimeoutException;
+
 public class TaskStatusUpdaterTest {
   @Test
   public void smokeTest() throws Exception {
@@ -44,7 +47,7 @@ public class TaskStatusUpdaterTest {
       assertEquals(update.get("last_status_message").asText(), "hi");
 
       logger.info("Sending update 2 ...");
-      sent = statusUpdater.sendUpdate(109L, null, null, null, null, null);
+      sent = statusUpdater.sendUpdateAndIgnoreError(109L, null, null, null, null, null);
       logger.info("Done update 2.");
       assertTrue(sent);
 
@@ -54,6 +57,38 @@ public class TaskStatusUpdaterTest {
 
       assertEquals(update.get("success_count").asInt(), 109);
       assertFalse(update.has("error_count"));
+    }
+  }
+
+  @Test
+  public void testSendUpdateAndIgnoreError() {
+    TaskStatusUpdater updater = new TaskStatusUpdater() {
+      @Override
+      public boolean sendUpdate(final Long successCount, final Long errorCount,
+                                final Long skippedCount, final Long expectedCount,
+                                final String lastStatusMessage, final Map<String, Object> extraProps,
+                                Long maxRetries, Long timeoutMillis, long backoffDurationMillis)
+              throws UpdateException, TimeoutException, InterruptedException {
+
+        switch (successCount.intValue()) {
+          case 1:
+            throw new MaxRetriesExceededException(1L, null);
+
+          case 2:
+            throw new MessageConversionException(null, null);
+
+          case 3:
+            throw new TimeoutException();
+
+          default:
+            throw new InterruptedException();
+        }
+      }
+    };
+
+    for (long i = 1; i <= 4; i++) {
+      updater.sendUpdateAndIgnoreError(i, null, null, null, null,
+              null);
     }
   }
 
