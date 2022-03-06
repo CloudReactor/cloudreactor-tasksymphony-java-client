@@ -1,7 +1,11 @@
 package io.cloudreactor.tasksymphony.wrapperio;
 
 import java.io.IOException;
-import java.net.*;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -29,54 +33,59 @@ public class TaskStatusUpdater implements AutoCloseable {
   /** Create a new instance, using the environment variables
    *  <code>PROC_WRAPPER_ENABLE_STATUS_UPDATE_LISTENER</code>
    *  (which should be mapped to <code>TRUE</code> to enable) and
-   *  <code>PROC_WRAPPER_STATUS_UPDATE_SOCKET_PORT</code> (which should be mapped to
-   *  a valid port number) to set the enabled flag and the port number, respectively.
+   *  <code>PROC_WRAPPER_STATUS_UPDATE_SOCKET_PORT</code> (which should be
+   *  mapped to a valid port number) to set the enabled flag and the port
+   *  number, respectively.
    *
    *  @since 0.1.0
    */
   public TaskStatusUpdater() {
     String value = System.getenv("PROC_WRAPPER_ENABLE_STATUS_UPDATE_LISTENER");
 
-    _isEnabled = (value != null) && value.toUpperCase(Locale.US).equals("TRUE");
+    isEnabled = (value != null) && value.toUpperCase(Locale.US).equals("TRUE");
 
     value = System.getenv("PROC_WRAPPER_STATUS_UPDATE_SOCKET_PORT");
 
     if ((value == null) || value.trim().isEmpty()) {
-      _outboundPort = DEFAULT_STATUS_UPDATE_PORT;
+      outboundPort = DEFAULT_STATUS_UPDATE_PORT;
     } else {
-      _outboundPort = Integer.parseInt(value);
+      outboundPort = Integer.parseInt(value);
     }
 
-    if (_outboundPort <= 0) {
-      throw new IllegalArgumentException("Port " + _outboundPort + " is not a valid port number.");
+    if (outboundPort <= 0) {
+      throw new IllegalArgumentException("Port " + outboundPort
+          + " is not a valid port number.");
     }
 
     value = System.getenv("PROC_WRAPPER_STATUS_UPDATE_SOCKET_BIND_PORT");
 
     if ((value == null) || value.trim().isEmpty()) {
-      _bindPort = null;
+      bindPort = null;
     } else {
-      _bindPort = Integer.valueOf(value);
+      bindPort = Integer.valueOf(value);
 
-      if (_bindPort.intValue() == _outboundPort) {
-        throw new IllegalArgumentException("Outbound port and bind port are both " + _outboundPort);
+      if (bindPort.intValue() == outboundPort) {
+        throw new IllegalArgumentException(
+            "Outbound port and bind port are both " + outboundPort);
       }
     }
 
     try {
-      _localhostInetAddress = InetAddress.getByName("localhost");
+      localhostInetAddress = InetAddress.getByName("localhost");
     } catch (UnknownHostException uhe) {
       throw new IllegalStateException("Can't get address of localhost");
     }
 
-    logger.info("TaskStatusUpdater isEnabled = {}, outboundPort = {}, bindPort = {}",
-      _isEnabled, _outboundPort, _bindPort);
+    LOGGER.info(
+        "TaskStatusUpdater isEnabled = {}, outboundPort = {}, bindPort = {}",
+        isEnabled, outboundPort, bindPort);
   }
 
   /** Create a new instance, that optionally disabled and uses the argument
    *  port for communication with the wrapper script.
    *  @param isEnabled true to enable communication, false to disable
-   *  @param outboundPort The port used to communicate with the wrapper script using UDP sockets.
+   *  @param outboundPort The port used to communicate with the wrapper script
+   *                      using UDP sockets.
    *  @param bindPort The port the socket is bound to. Should be different
    *  from the outbound port. If null, any available port will be used.
    *  @throws IllegalArgumentException if either port number is invalid
@@ -85,27 +94,30 @@ public class TaskStatusUpdater implements AutoCloseable {
   public TaskStatusUpdater(final boolean isEnabled, final int outboundPort,
     final Integer bindPort) {
     if (outboundPort <= 0) {
-      throw new IllegalArgumentException("Outbound port " + outboundPort + " is not a valid port number.");
+      throw new IllegalArgumentException("Outbound port " + outboundPort
+          + " is not a valid port number.");
     }
 
     if (bindPort != null) {
       final int iBindPort = bindPort.intValue();
 
       if (iBindPort <= 0) {
-        throw new IllegalArgumentException("Bind port " + iBindPort + " is not a valid port number.");
+        throw new IllegalArgumentException("Bind port " + iBindPort
+            + " is not a valid port number.");
       }
 
       if (iBindPort == outboundPort) {
-        throw new IllegalArgumentException("Outbound port and bind port are both " + outboundPort);
+        throw new IllegalArgumentException(
+            "Outbound port and bind port are both " + outboundPort);
       }
     }
 
-    _isEnabled = isEnabled;
-    _outboundPort = outboundPort;
-    _bindPort = bindPort;
+    this.isEnabled = isEnabled;
+    this.outboundPort = outboundPort;
+    this.bindPort = bindPort;
 
     try {
-      _localhostInetAddress = InetAddress.getByName("localhost");
+      localhostInetAddress = InetAddress.getByName("localhost");
     } catch (UnknownHostException uhe) {
       throw new IllegalStateException("Can't get address of localhost");
     }
@@ -113,7 +125,8 @@ public class TaskStatusUpdater implements AutoCloseable {
 
   /** Create a new instance, that is enabled and uses the argument port for
    *  communication with the wrapper script.
-   *  @param outboundPort The port used to communicate with the wrapper script using UDP sockets.
+   *  @param outboundPort The port used to communicate with the wrapper script
+   *                      using UDP sockets.
    *  @throws IllegalArgumentException if the port number is invalid
    *  @since 0.1.0
    */
@@ -121,35 +134,44 @@ public class TaskStatusUpdater implements AutoCloseable {
     this(true, outboundPort, null);
   }
 
-  /** Send an update message to the process wrapper script, if status updates are enabled.
-   *  The wrapper script will coalesce updates to save bandwidth so this method can
-   *  be called as often as desired. This method can also be called concurrently by
-   *  multiple threads.
+  /** Send an update message to the process wrapper script, if status updates
+   *  are enabled. The wrapper script will coalesce updates to save bandwidth so
+   *  this method can be called as often as desired. This method can also be
+   *  called concurrently by multiple threads.
    *
-   * @param successCount The number of successful items. If null, no value will be sent.
-   * @param errorCount The number of unsuccessful items. If null, no value will be sent.
-   * @param skippedCount The number of skipped items. If null, no value will be sent.
-   * @param expectedCount The number of expected items. If null, no value will be sent.
-   * @param lastStatusMessage A message indicating the last status. If null, no value will be sent.
-   * @param extraProps A map containing string keys mapped to additional properties to send
-   * Each property value must be something serializable in JSON, including lists and
-   * hashes. If null, no additional properties will be sent.
-   * @param maxRetries If null, the default number of attempts will be used (10).
+   * @param successCount The number of successful items. If null, no value will
+   *                     be sent.
+   * @param errorCount The number of unsuccessful items. If null, no value will
+   *                   be sent.
+   * @param skippedCount The number of skipped items. If null, no value will be
+   *                     sent.
+   * @param expectedCount The number of expected items. If null, no value will
+   *                      be sent.
+   * @param lastStatusMessage A message indicating the last status. If null, no
+   *                          value will be sent.
+   * @param extraProps A map containing string keys mapped to additional
+   *                   properties to send. Each property value must be something
+   *                   serializable in JSON, including lists and dictionaries.
+   *                   If null, no additional properties will be sent.
+   * @param maxRetries If null, the default number of attempts will be used
+   *                   (10).
    * If non-null and non-negative, the value is the maximum number of times an
    * update will be retried before throwing a <code>TimeoutException</code>.
    * If non-null and negative, the update will be retried indefinitely until
    * successful, subject to the timeout limit.
-   * @param timeoutMillis If null, the default timeout will be used (10 minutes).
-   * If non-null and non-negative, the value is the maximum duration this call can
-   * take before throwing a <code>MaxRetriesExceedException</code>.
+   * @param timeoutMillis If null, the default timeout will be used (10
+   *                      minutes).
+   * If non-null and non-negative, the value is the maximum duration this call
+   * can take before throwing a <code>MaxRetriesExceedException</code>.
    * If non-null and negative, no time limit will apply.
-   * @param backoffDurationMillis The duration to wait, in milliseconds, after an
-   * unsuccessful socket operation, before the next retry. If -1, the default
+   * @param backoffDurationMillis The duration to wait, in milliseconds, after
+   * an unsuccessful socket operation, before the next retry. If -1, the default
    * duration will be used.
    * @return true if the update succeeded, false if status updates are disabled.
    * @throws MessageConversionException if <code>extraProps</code> contains
    * values that cannot be serialized to JSON.
-   * @throws MaxRetriesExceededException if the number of allowed retries was exceeded
+   * @throws MaxRetriesExceededException if the number of allowed retries was
+   * exceeded
    * @throws TimeoutException if the operation timed out
    * @throws InterruptedException if the current thread is interrupted while
    * waiting after an IOException occurred
@@ -158,41 +180,41 @@ public class TaskStatusUpdater implements AutoCloseable {
   public boolean sendUpdate(final Long successCount, final Long errorCount,
     final Long skippedCount, final Long expectedCount,
     final String lastStatusMessage, final Map<String, Object> extraProps,
-    Long maxRetries, Long timeoutMillis, long backoffDurationMillis)
+    final Long maxRetries, final Long timeoutMillis,
+    final long backoffDurationMillis)
     throws UpdateException, TimeoutException, InterruptedException {
 
-    if (!_isEnabled) {
-      if (logger.isTraceEnabled()) {
-        logger.trace("sendUpdate() exiting early since updater is disabled.");
+    if (!isEnabled) {
+      if (LOGGER.isTraceEnabled()) {
+        LOGGER.trace("sendUpdate() exiting early since updater is disabled.");
       }
       return false;
     }
 
-    if (backoffDurationMillis < 0L) {
-      backoffDurationMillis = DEFAULT_BACKOFF_DURATION_MILLIS;
-    }
+    long backoffMillis = (backoffDurationMillis < 0L)
+        ? DEFAULT_BACKOFF_DURATION_MILLIS : backoffDurationMillis;
 
     final byte[] message = makeMessage(successCount, errorCount,
       skippedCount, expectedCount, lastStatusMessage, extraProps);
 
     final DatagramPacket packet = new DatagramPacket(message, message.length,
-      _localhostInetAddress, _outboundPort);
+        localhostInetAddress, outboundPort);
 
-    final long maxAttempts = (maxRetries == null) ? DEFAULT_MAX_ATTEMPTS :
-      (maxRetries.longValue() + 1);
+    final long maxAttempts = (maxRetries == null) ? DEFAULT_MAX_ATTEMPTS
+        : (maxRetries.longValue() + 1);
 
-    final long timeoutMillisValue = (timeoutMillis == null) ? DEFAULT_TIMEOUT_MILLIS :
-      timeoutMillis.longValue();
+    final long timeoutMillisValue = (timeoutMillis == null)
+        ? DEFAULT_TIMEOUT_MILLIS : timeoutMillis.longValue();
 
-    final Long deadlineMillis = (timeoutMillisValue < 0L) ?
-      null : Long.valueOf(System.currentTimeMillis() + timeoutMillisValue);
+    final Long deadlineMillis = (timeoutMillisValue < 0L)
+        ? null : Long.valueOf(System.currentTimeMillis() + timeoutMillisValue);
 
     long attemptCount = 0L;
 
     do {
       attemptCount += 1L;
 
-      logger.debug("Sending update, attempt {}", attemptCount);
+      LOGGER.debug("Sending update, attempt {}", attemptCount);
 
       synchronized (this) {
         DatagramSocket sock = null;
@@ -202,47 +224,55 @@ public class TaskStatusUpdater implements AutoCloseable {
           notifyAll();
           return true;
         } catch (IOException ioe) {
-          logger.warn("Got IOException when sending update message", ioe);
+          LOGGER.warn("Got IOException when sending update message", ioe);
 
           if (sock != null) {
             try {
               sock.close();
             } catch (Exception ex) {
-              logger.debug("Can't close socket", ex);
+              LOGGER.debug("Can't close socket", ex);
             }
           }
-          this._socket = null;
+          this.socket = null;
 
           if ((maxAttempts > 0) && (attemptCount >= maxAttempts)) {
             throw new MaxRetriesExceededException(maxAttempts - 1, ioe);
           }
 
-          if ((deadlineMillis != null) &&
-              (System.currentTimeMillis() > deadlineMillis.longValue())) {
-            throw new TimeoutException("sendUpdate() timed out after " + timeoutMillis + " ms");
+          if ((deadlineMillis != null)
+              && (System.currentTimeMillis() > deadlineMillis.longValue())) {
+            throw new TimeoutException("sendUpdate() timed out after "
+                + timeoutMillis + " ms");
           }
 
-          logger.info("Waiting {} ms before retrying ...", backoffDurationMillis);
-          wait(backoffDurationMillis);
+          LOGGER.info("Waiting {} ms before retrying ...", backoffMillis);
+          wait(backoffMillis);
         }
       }
     } while (true);
   }
 
-  /** Send an update message to the process wrapper script, using the default values
-   *  for retries, timeout, and backoff duration.
-   * @param successCount The number of successful items. If null, no value will be sent.
-   * @param errorCount The number of unsuccessful items. If null, no value will be sent.
-   * @param skippedCount The number of skipped items. If null, no value will be sent.
-   * @param expectedCount The number of expected items. If null, no value will be sent.
-   * @param lastStatusMessage A message indicating the last status. If null, no value will be sent.
-   * @param extraProps A map containing string keys mapped to additional properties to send
-   * Each property value must be something serializable in JSON, including lists and
-   * hashes. If null, no additional properties will be sent.
+  /** Send an update message to the process wrapper script, using the default
+   *  values for retries, timeout, and backoff duration.
+   * @param successCount The number of successful items. If null, no value will
+   *                     be sent.
+   * @param errorCount The number of unsuccessful items. If null, no value will
+   *                   be sent.
+   * @param skippedCount The number of skipped items. If null, no value will be
+   *                     sent.
+   * @param expectedCount The number of expected items. If null, no value will
+   *                      be sent.
+   * @param lastStatusMessage A message indicating the last status. If null, no
+   *                          value will be sent.
+   * @param extraProps A map containing string keys mapped to additional
+   *                   properties to send
+   * Each property value must be something serializable in JSON, including lists
+   * and dictionaries. If null, no additional properties will be sent.
    * @return true if the update succeeded, false if status updates are disabled.
    * @throws MessageConversionException if <code>extraProps</code> contains
    * values that cannot be serialized to JSON.
-   * @throws MaxRetriesExceededException if the number of allowed retries was exceeded
+   * @throws MaxRetriesExceededException if the number of allowed retries was
+   * exceeded
    * @throws TimeoutException if the operation timed out
    * @throws InterruptedException if the current thread is interrupted while
    * waiting after an IOException occurred
@@ -256,35 +286,41 @@ public class TaskStatusUpdater implements AutoCloseable {
       lastStatusMessage, extraProps, null, null, -1L);
   }
 
-  /** Send an update message to the process wrapper script, using the default values
-   *  for retries, timeout, and backoff duration. Swallow the exceptions that could
-   *  result from failing to send the update, retuning false instead.
-   * @param successCount The number of successful items. If null, no value will be sent.
-   * @param errorCount The number of unsuccessful items. If null, no value will be sent.
-   * @param skippedCount The number of skipped items. If null, no value will be sent.
-   * @param expectedCount The number of expected items. If null, no value will be sent.
-   * @param lastStatusMessage A message indicating the last status. If null, no value will be sent.
-   * @param extraProps A map containing string keys mapped to additional properties to send
-   * Each property value must be something serializable in JSON, including lists and
-   * hashes. If null, no additional properties will be sent.
-   * @return true if the update succeeded, false if status updates are disabled or if the
-   * update failed.
+  /** Send an update message to the process wrapper script, using the default
+   *  values or retries, timeout, and backoff duration. Swallow the exceptions
+   *  that could result from failing to send the update, retuning false instead.
+   * @param successCount The number of successful items. If null, no value will
+   *                     be sent.
+   * @param errorCount The number of unsuccessful items. If null, no value will
+   *                   be sent.
+   * @param skippedCount The number of skipped items. If null, no value will be
+   *                     sent.
+   * @param expectedCount The number of expected items. If null, no value will
+   *                      be sent.
+   * @param lastStatusMessage A message indicating the last status. If null, no
+   *                          value will be sent.
+   * @param extraProps A map containing string keys mapped to additional
+   *                   properties to send. Each property value must be something
+   *                   serializable in JSON, including lists and dictionaries.
+   *                   If null, no additional properties will be sent.
+   * @return true if the update succeeded, false if status updates are disabled
+   * or if the update failed.
    * @since 0.4.0
    */
-  public boolean sendUpdateAndIgnoreError(final Long successCount, final Long errorCount,
-    final Long skippedCount, final Long expectedCount,
+  public boolean sendUpdateAndIgnoreError(final Long successCount,
+    final Long errorCount, final Long skippedCount, final Long expectedCount,
     final String lastStatusMessage, final Map<String, Object> extraProps) {
     try {
       return sendUpdate(successCount, errorCount, skippedCount, expectedCount,
               lastStatusMessage, extraProps, null, null, -1L);
     } catch (UpdateException uex) {
-      logger.info("Ignoring update exception", uex);
+      LOGGER.info("Ignoring update exception", uex);
       return false;
     } catch (TimeoutException tex) {
-      logger.info("Ignoring timeout exception", tex);
+      LOGGER.info("Ignoring timeout exception", tex);
       return false;
     } catch (InterruptedException iex) {
-      logger.info("Ignoring interrupted exception", iex);
+      LOGGER.info("Ignoring interrupted exception", iex);
       return false;
     }
   }
@@ -294,7 +330,7 @@ public class TaskStatusUpdater implements AutoCloseable {
    *  @since 0.1.0
    */
   public boolean isEnabled() {
-    return _isEnabled;
+    return isEnabled;
   }
 
   /** Return the port used to communicate with the wrapper script.
@@ -302,7 +338,7 @@ public class TaskStatusUpdater implements AutoCloseable {
    *  @since 0.1.0
    */
   public int getOutboundPort() {
-    return _outboundPort;
+    return outboundPort;
   }
 
   /** Return the port this instance binds to. If this instance binds to
@@ -312,7 +348,7 @@ public class TaskStatusUpdater implements AutoCloseable {
    *  @since 0.1.0
    */
   public Integer getBindPort() {
-    return _bindPort;
+    return bindPort;
   }
 
   /** Close the underlying socket if it exists.
@@ -320,14 +356,35 @@ public class TaskStatusUpdater implements AutoCloseable {
    */
   @Override
   public synchronized void close() {
-    if (_socket != null) {
-      _socket.close();
-      _socket = null;
+    if (socket != null) {
+      socket.close();
+      socket = null;
     }
   }
 
-  byte[] makeMessage(final Long successCount, final Long errorCount,
-    final Long skippedCount, final Long expectedCount,
+  /** Return a byte array that encodes the parameters for a wrapper script
+   *  to read. This is normally a JSON-encoded dictionary, with a newline at the
+   *  end.
+   *
+   * @param successCount The number of successful items. If null, no value will
+   *                     be sent.
+   * @param errorCount The number of unsuccessful items. If null, no value will
+   *                   be sent.
+   * @param skippedCount The number of skipped items. If null, no value will be
+   *                     sent.
+   * @param expectedCount The number of expected items. If null, no value will
+   *                      be sent.
+   * @param lastStatusMessage A message indicating the last status. If null, no
+   *                          value will be sent.
+   * @param extraProps A map containing string keys mapped to additional
+   *                   properties to send. Each property value must be something
+   *                   serializable in JSON, including lists and dictionaries.
+   *                   If null, no additional properties will be sent.
+   * @return A byte array that encodes the parameters
+   * @throws MessageConversionException if the message cannot be encoded
+   */
+  protected byte[] makeMessage(final Long successCount,
+    final Long errorCount, final Long skippedCount, final Long expectedCount,
     final String lastStatusMessage, final Map<String, Object> extraProps)
     throws MessageConversionException {
 
@@ -359,47 +416,49 @@ public class TaskStatusUpdater implements AutoCloseable {
     }
 
     try {
-      return (mapper.writeValueAsString(props) + "\n").getBytes();
+      return (MAPPER.writeValueAsString(props) + "\n").getBytes(
+          StandardCharsets.UTF_8);
     } catch (JsonProcessingException jpe) {
       throw new MessageConversionException(jpe, props);
     }
   }
 
   /** The default port used to communicated with the wrapper script (2373). */
-  public final static int DEFAULT_STATUS_UPDATE_PORT = 2373;
+  public static final int DEFAULT_STATUS_UPDATE_PORT = 2373;
 
   /** The default number of attempts allowed for each call to updateStatus(). */
-  public final static long DEFAULT_MAX_ATTEMPTS = 10L;
+  public static final long DEFAULT_MAX_ATTEMPTS = 10L;
 
   /** The default timeout, in milliseconds, before updateStatus() fails.
    *  This value is equivalent to 10 minutes.
    */
-  private final static long DEFAULT_TIMEOUT_MILLIS = 10L * 60L * 1000L;
+  private static final long DEFAULT_TIMEOUT_MILLIS = 10L * 60L * 1000L;
 
   /** The default duration, in milliseconds, to wait after a socket operation
    *  fails. This value is equivalent to 30 seconds.
    */
-  private final static long DEFAULT_BACKOFF_DURATION_MILLIS = 30L * 1000L;
+  private static final long DEFAULT_BACKOFF_DURATION_MILLIS = 30L * 1000L;
 
   private DatagramSocket acquireSocket() throws java.net.SocketException {
-    if (_socket != null) {
-      return _socket;
+    if (socket != null) {
+      return socket;
     }
 
-    if (_bindPort == null) {
-      _socket = new DatagramSocket();
+    if (bindPort == null) {
+      socket = new DatagramSocket();
     } else {
-      _socket = new DatagramSocket(_bindPort);
+      socket = new DatagramSocket(bindPort);
     }
-    return _socket;
+    return socket;
   }
 
-  private final boolean _isEnabled;
-  private final int _outboundPort;
-  private final Integer _bindPort;
-  private final InetAddress _localhostInetAddress;
-  private DatagramSocket _socket = null;
+  private final boolean isEnabled;
+  private final int outboundPort;
+  private final Integer bindPort;
+  private final InetAddress localhostInetAddress;
+  private DatagramSocket socket = null;
 
-  private final static ObjectMapper mapper = new ObjectMapper();
-  private final static Logger logger = LoggerFactory.getLogger(TaskStatusUpdater.class);
+  private static final ObjectMapper MAPPER = new ObjectMapper();
+  private static final Logger LOGGER = LoggerFactory.getLogger(
+    TaskStatusUpdater.class);
 }

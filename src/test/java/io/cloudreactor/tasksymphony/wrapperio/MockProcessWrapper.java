@@ -1,6 +1,7 @@
 package io.cloudreactor.tasksymphony.wrapperio;
 
 import java.net.*;
+import java.nio.charset.StandardCharsets;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -66,7 +67,8 @@ class MockProcessWrapper implements Runnable, AutoCloseable {
           String s = null;
 
           try {
-            s = new String(_partialMessage, 0, _partialMessageOffset);
+            s = new String(_partialMessage, 0, _partialMessageOffset,
+                StandardCharsets.UTF_8);
           } catch (Exception ex2) {
             logger.warn("Can't read string from buffer", ex2);
           }

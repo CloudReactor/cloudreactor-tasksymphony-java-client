@@ -7,6 +7,8 @@ import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
 plugins {
     `java-library`
     id("org.openapi.generator") version "5.3.0"
+    checkstyle
+    id("com.github.spotbugs") version "5.0.6"
     signing
     `maven-publish`
     id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
@@ -15,7 +17,7 @@ plugins {
 val GROUP = "io.cloudreactor"
 val ARTIFACT = "tasksymphony"
 val PACKAGE = GROUP + "." + ARTIFACT
-val VERSION = "0.4.0"
+val VERSION = "0.5.0"
 
 group = PACKAGE
 version = VERSION
@@ -50,6 +52,7 @@ dependencies {
     implementation("org.openapitools", "jackson-databind-nullable", LibraryVersions.jackson_databind_nullable_version)
     implementation("com.fasterxml.jackson.datatype", "jackson-datatype-jsr310", LibraryVersions.jackson_version)
     implementation("jakarta.annotation", "jakarta.annotation-api", LibraryVersions.jakarta_annotation_version)
+    compileOnly("com.github.spotbugs", "spotbugs-annotations", "4.5.3")
     
     testImplementation("junit", "junit", LibraryVersions.junit_version)
     testImplementation("org.apache.logging.log4j","log4j-core", LibraryVersions.log4j2_version)
@@ -103,6 +106,26 @@ tasks.withType<Test> {
     this.testLogging {
         this.showStandardStreams = true
     }
+}
+
+tasks.getByName<Checkstyle>("checkstyleMain") {
+    sourceSets {
+        java {
+            exclude("io/cloudreactor/tasksymphony/api/**")
+            exclude("io/cloudreactor/tasksymphony/invoker/**")
+            exclude("io/cloudreactor/tasksymphony/model/**")
+        }
+    }
+}
+
+tasks.getByName<Checkstyle>("checkstyleTest") {
+    sourceSets {
+        exclude("*")
+    }
+}
+
+spotbugs {
+    onlyAnalyze.set(listOf("io.cloudreactor.tasksymphony.wrapperio.*"))
 }
 
 tasks.register<Delete>("clearDocs") {
