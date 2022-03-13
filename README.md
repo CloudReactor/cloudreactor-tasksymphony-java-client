@@ -35,7 +35,7 @@ import io.cloudreactor.tasksymphony.invoker.ApiClient;
 import io.cloudreactor.tasksymphony.invoker.ApiException;
 import io.cloudreactor.tasksymphony.invoker.Configuration;
 
-public class Example {
+public class APIClientUsageExample {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         
@@ -89,24 +89,32 @@ picked up correctly.
 
 ### Example usage
 
-    // Use the environment variables 
-    // PROC_WRAPPER_ENABLE_STATUS_UPDATE_LISTENER
-    // PROC_WRAPPER_STATUS_UPDATE_SOCKET_PORT
-    // PROC_WRAPPER_STATUS_UPDATE_SOCKET_BIND_PORT
-    // to determine configuration. These environment variables are typically passed
-    // to the proc_wrapper.py script which then passes them on to your process.
-    //
-    // This uses a try-with-resources statement that will close the updater
-    // whether or not the block threw an exception.
-    try (TaskStatusUpdater statusUpdater = new TaskStatusUpdater()) { 
-        statusUpdater.sendUpdateAndIgnoreError(
-            1L,    // success count
-            2L,    // error count
-            null,  // skipped count
-            null,  // expected count 
-            "running", // last status message
-            null); // extra props
-    } 
+```java
+import io.cloudreactor.tasksymphony.wrapperio.TaskStatusUpdater;
+
+public class WrapperUsageExample {
+    public static main(String[] args) {
+        // Use the environment variables 
+        // PROC_WRAPPER_ENABLE_STATUS_UPDATE_LISTENER
+        // PROC_WRAPPER_STATUS_UPDATE_SOCKET_PORT
+        // PROC_WRAPPER_STATUS_UPDATE_SOCKET_BIND_PORT
+        // to determine configuration. These environment variables are typically passed
+        // to proc_wrapper which then passes them on to your process.
+        //
+        // This uses a try-with-resources statement that will close the updater
+        // whether or not the block threw an exception.
+        try (TaskStatusUpdater statusUpdater = new TaskStatusUpdater()) {
+            statusUpdater.sendUpdateAndIgnoreError(
+                1L,    // success count
+                2L,    // error count
+                null,  // skipped count
+                null,  // expected count 
+                "running", // last status message
+                null); // extra props
+        }
+    }
+}
+```
 
 ## More documentation
 
